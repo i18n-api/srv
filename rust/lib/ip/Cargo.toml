@@ -1,0 +1,10 @@
+[package]
+name = "ip"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+http = ["dep:http"]
+
+[dependencies]
+http = { version = "1.0.0", optional = true }

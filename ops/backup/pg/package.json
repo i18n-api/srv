@@ -1,0 +1,7 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@w5/blake3": "^0.0.10",
+    "postgres": "^3.4.3"
+  }
+}

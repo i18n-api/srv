@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  gate:
+    image:  i18nsite/nginx
+    restart: always
+    volumes:
+      - ../..:/mnt/www
+      - ./mnt/log/nginx:/var/log/nginx
+      - ./mnt/ssl:/ssl
+      - ./conf/nginx:/etc/nginx
+    ports:
+      - 80:80
+      - 443:443
+      - 443:443/udp
+      - 7775:7775
+      - 7776:7776
+      - 7779:7779
+      - 7780:7780
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

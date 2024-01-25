@@ -1,0 +1,14 @@
+[Unit]
+Description=NAME
+After=network.target
+
+[Service]
+Type=simple
+Restart=on-failure
+CPUSchedulingPolicy=rr
+CPUSchedulingPriority=70
+RestartSec=1
+ExecStart=EXEC
+
+[Install]
+WantedBy=multi-user.target

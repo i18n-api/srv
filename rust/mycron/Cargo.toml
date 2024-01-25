@@ -1,0 +1,44 @@
+[package]
+name = "mycron"
+version = "0.1.0"
+edition = "2021"
+description = "cron from mysql"
+license = "Apache-2.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+anyhow = "1.0.79"
+duct = "0.13.7"
+tracing = "0.1.40"
+xerr = { version = "0.1.1", path = "../lib/xerr" }
+m = { path = "../lib/m" }
+tokio = { version = "1.35.1", features = [
+  "macros",
+  "rt",
+  "rt-multi-thread",
+  "time",
+  "sync",
+] }
+chrono = "0.4.32"
+sts = "0.1.19"
+genv = "0.1.6"
+static_init = { version = "1.0.3", features = [
+  "lock_statistics",
+  "parking_lot",
+  "parking_lot_core",
+] }
+xsmtp = "0.1.9"
+
+[profile.release]
+lto = true
+opt-level = 3
+incremental = true
+codegen-units = 1
+overflow-checks = false
+panic = 'abort'
+debug-assertions = false
+strip = true
+
+# [target.x86_64-unknown-linux-gnu]
+# linker = "clang"
+# rustflags = ["-C", "link-arg=-fuse-ld=/usr/bin/mold"]
