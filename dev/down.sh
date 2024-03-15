@@ -4,4 +4,5 @@ DIR=$(realpath $0) && DIR=${DIR%/*}
 cd $DIR
 set -ex
 
+docker-compose stop $@
 docker-compose down $@

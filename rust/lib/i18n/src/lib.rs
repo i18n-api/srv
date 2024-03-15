@@ -54,7 +54,7 @@ macro_rules! gen {
       header: &$crate::HeaderMap,
       key: impl AsRef<str>,
       li: &'a [&[u8]; N],
-    ) -> anyhow::Result<()> {
+    ) -> aok::Result<()> {
       let lang = $crate::header(header);
       let li = get_li(lang, li).await?;
       let space = $crate::space(lang);
@@ -65,7 +65,7 @@ macro_rules! gen {
       header: &$crate::HeaderMap,
       key: impl AsRef<str>,
       val: &[u8],
-    ) -> anyhow::Result<()> {
+    ) -> aok::Result<()> {
       let lang = $crate::header(header);
       let hset = &[HSET_PREFIX, &$crate::u8_bin(lang)].concat()[..];
       let val: String = R.hget(hset, val).await?;

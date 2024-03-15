@@ -94,7 +94,7 @@ impl Ua {
             if g.starts_with("ANGLE Metal Renderer:") {
               g = &g[21..];
             }
-            gpu = g.replace(",Unspecified Version", "").to_owned();
+            g.replace(",Unspecified Version", "").clone_into(&mut gpu);
           }
           _ => {}
         },

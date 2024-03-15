@@ -12,7 +12,7 @@
   @3-/redis/R.js
 
 flagsDef = (name, flags)=>
-  if flags.length
+  if flags.length && false # kvrocks hack https://github.com/apache/kvrocks/issues/2133
     def = \
     """
 {function_name='#{name}',callback=#{name},flags={'#{flags.join('\',\'')}'}}

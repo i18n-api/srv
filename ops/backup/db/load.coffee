@@ -25,6 +25,9 @@ ROOT = resolve(
   MYSQL_USER
 } = process.env
 
+importSql = (sql)=>
+    $"mysql -h #{MYSQL_HOST} -P#{MYSQL_PORT} -u #{MYSQL_USER} #{MYSQL_DB} < #{sql}"
+
 scan = (dir)=>
   if not existsSync dir
     return
@@ -38,6 +41,7 @@ scan = (dir)=>
     ndir = join(dir,subdir)
     if statSync(ndir).isFile()
       continue
+
     for await i from walk ndir
       if i.endsWith '.sql'
         rfp = i.slice(ROOT.length+1)
@@ -57,9 +61,9 @@ scan = (dir)=>
             sql
           ]
 
+          # hack for https://github.com/oceanbase/oceanbase/issues/1817 oceanbase 不支持 DROP procedure IF EXISTS cronLi
           if kind == 'procedure'
             name = name.replaceAll('`','')
-            # https://github.com/oceanbase/oceanbase/issues/1817 oceanbase 不支持 DROP procedure IF EXISTS cronLi
             if await $one("SELECT COUNT(1) FROM information_schema.routines WHERE routine_name='#{name}' AND ROUTINE_TYPE='PROCEDURE' AND ROUTINE_SCHEMA=?",process.env.MYSQL_DB)
               li.unshift(
                 "DROP PROCEDURE #{name};"
@@ -73,38 +77,33 @@ scan = (dir)=>
           li = sql.split(';\n').filter((i)=>i.length).map((i)=>i+';')
         await $db(
           (c)=>
+            # hack for https://github.com/oceanbase/oceanbase/issues/1818
             if kind == 'procedure'
-              # hack for https://github.com/oceanbase/oceanbase/issues/1818
               {tmpdir} = await import('os')
               {rmSync} = await import('fs')
 
               write = (await import('@3-/write')).default
-              dir = join(tmpdir(),'sql')
-              fp = join(dir,name+'.sql')
+              tdir = join(tmpdir(),'sql')
+              fp = join(tdir,name+'.sql')
               write(
                 fp
                 'delimiter ;;\n'+li.join(';\n')+'\ndelimiter ;'
               )
-              {
-                MYSQL_DB
-                MYSQL_HOST
-                MYSQL_PWD
-                MYSQL_PORT
-                MYSQL_USER
-              } = process.env
-              await $"mysql -h #{MYSQL_HOST} -P#{MYSQL_PORT} -u #{MYSQL_USER} #{MYSQL_DB} < #{fp}"
+              await importSql(fp)
               rmSync(fp)
-            else
-              await c.beginTransaction()
-              for i from li
-                await c.execute(i)
-              await c.commit()
+              return
+
+            await c.beginTransaction()
+            for i from li
+              await c.query(i)
+            await c.commit()
             return
         )
 
   init_sql = join dir,'init.sql'
+
   if existsSync init_sql
-     await $"mysql -h #{MYSQL_HOST} -P#{MYSQL_PORT} -u #{MYSQL_USER} #{MYSQL_DB} < #{init_sql}"
+    importSql init_sql
   return
 
 await scan join ROOT,'db'

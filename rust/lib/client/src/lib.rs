@@ -12,10 +12,14 @@ use axum::{
 };
 use set_header::Header;
 use t3::host::Error;
-use uid_by_token::uid_by_token;
 pub use user;
 use user::{client_user_cookie, cookie_set, ClientUser};
 use xtld::url_tld;
+
+mod token;
+mod uid;
+pub use token::Token;
+pub use uid::Uid;
 
 pub struct Client(pub ClientUser);
 
@@ -82,20 +86,3 @@ pub async fn client(parts: &mut Parts) -> aok::Result<Client> {
 }
 
 apart::from_request_parts!(Client, client);
-
-pub struct Uid(pub u64);
-
-apart::from_request_parts!(Uid, async move |parts: &mut Parts| {
-  let headers = &parts.headers;
-  if let Some(t) = headers.get("t") {
-    if let Some(uid) = uid_by_token(t.to_str()?).await? {
-      return Ok(Uid(uid));
-    }
-  } else {
-    let client = client(parts).await?;
-    if let Some(id) = client.uid().await? {
-      return Ok(Uid(id));
-    }
-  }
-  apart::err(StatusCode::UNAUTHORIZED, "")?
-});

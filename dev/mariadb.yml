@@ -3,7 +3,9 @@ version: '3'
 services:
 
   db:
-    image: i18nsite/mariadb
+    build:
+      context: ./conf/mariadb
+      dockerfile: Dockerfile
     restart: always
     ports:
       - ${MYSQL_PORT}:3306
@@ -15,4 +17,6 @@ services:
     volumes:
       - ./mnt/backup/mariadb:/backup
       - ./mnt/data/mariadb:/var/lib/mysql
-      - ./conf/init/mariadb:/docker-entrypoint-initdb.d
+      - ./conf/mariadb/conf/mariadb.cnf:/etc/mysql/conf.d/mariadb.cnf
+      - ./conf/mariadb/conf:/etc/mysql/conf
+      - ./conf/mariadb/init:/docker-entrypoint-initdb.d

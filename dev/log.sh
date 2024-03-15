@@ -3,4 +3,4 @@
 DIR=$(dirname $(realpath "$0"))
 cd $DIR
 set -ex
-docker-compose logs -f
+docker-compose logs -f $@

@@ -5,26 +5,26 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
-anyhow = "1.0.79"
+anyhow = "1.0.81"
 axum = "0.7.4"
 rand = "0.8.5"
-tokio = { version = "1.35.1", features = [
+tokio = { version = "1.36.0", features = [
   "time",
   "rt-multi-thread",
   "macros",
   "rt",
 ] }
 tracing = "0.1.40"
-trt = "0.1.27"
+trt = "0.1.28"
 r = { path = "../lib/r" }
 exepid = { path = "../lib/exepid" }
-const-str = "0.5.6"
+const-str = "0.5.7"
 url = { path = "./.url" }
 set_header = "0.1.4"
 re = "0.1.5"
 t3 = "0.1.5"
-loginit = "0.1.8"
-genv = "0.1.6"
+loginit = "0.1.10"
+genv = "0.1.7"
 
 # rustflags = ["-C", "link-arg=-fuse-ld=/opt/homebrew/opt/llvm/bin/lld"]
 #

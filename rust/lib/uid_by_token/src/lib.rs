@@ -1,6 +1,12 @@
 use r::{fred::interfaces::HashesInterface, R};
 
-pub async fn uid_by_token(token: impl AsRef<str>) -> aok::Result<Option<u64>> {
+#[derive(Copy, Clone, Debug)]
+pub struct Token {
+  pub id: u64,
+  pub uid: u64,
+}
+
+pub async fn uid_by_token(token: impl AsRef<str>) -> aok::Result<Option<Token>> {
   let token = token.as_ref();
   if !token.is_empty() {
     if let Ok(token) = ub64::b64d(token) {
@@ -14,7 +20,10 @@ pub async fn uid_by_token(token: impl AsRef<str>) -> aok::Result<Option<u64>> {
         if let Some(exist) = exist {
           let exist = vb::d(exist)?;
           if exist[0] == sk && exist[1] == day {
-            return Ok(Some(exist[2])); // uid;
+            return Ok(Some(Token {
+              id: token_id,
+              uid: exist[2],
+            }));
           }
         }
       }

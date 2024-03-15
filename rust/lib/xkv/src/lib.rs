@@ -42,7 +42,6 @@ impl Server {
 const USER: &str = "USER";
 const NODE: &str = "NODE";
 const PASSWORD: &str = "PASSWORD";
-const RESP: &str = "RESP";
 const DB: &str = "DB";
 
 pub struct Wrap(pub &'static Lazy<RedisClient>);
@@ -97,7 +96,7 @@ pub async fn conn(prefix: impl AsRef<str>) -> Result<RedisClient> {
     if key.starts_with(&prefix) {
       let key = &key[prefix.len()..];
 
-      if [USER, NODE, PASSWORD, RESP, DB].contains(&key) {
+      if [USER, NODE, PASSWORD, DB].contains(&key) {
         map.insert(key.to_owned(), value.trim().to_owned());
       }
     }
@@ -107,7 +106,7 @@ pub async fn conn(prefix: impl AsRef<str>) -> Result<RedisClient> {
     .get(NODE)
     .unwrap_or_else(|| unreachable!("NEED ENV {prefix}{}", NODE));
 
-  let server = if host_port.starts_with("/") {
+  let server = if host_port.starts_with('/') {
     Server::unix_sock(host_port)
   } else {
     let host_port = host_port
@@ -137,11 +136,10 @@ pub async fn conn(prefix: impl AsRef<str>) -> Result<RedisClient> {
   };
 
   let database = get(map.get(DB)).map(|s| u8::from_str(&s).unwrap());
-  let resp = get(map.get(RESP)).map(|s| u8::from_str(&s).unwrap());
   let user = get(map.get(USER));
   let password = get(map.get(PASSWORD));
 
-  connect(&server, user, password, database, resp).await
+  connect(&server, user, password, database).await
 }
 
 pub async fn connect(
@@ -149,20 +147,9 @@ pub async fn connect(
   username: Option<String>,
   password: Option<String>,
   database: Option<u8>,
-  resp: Option<u8>,
 ) -> Result<RedisClient> {
-  let resp = match resp {
-    Some(v) => {
-      if v == 2 {
-        fred::types::RespVersion::RESP2
-      } else {
-        fred::types::RespVersion::RESP3
-      }
-    }
-    None => fred::types::RespVersion::RESP3,
-  };
   let mut conf = RedisConfig {
-    version: resp,
+    version: fred::types::RespVersion::RESP3,
     ..Default::default()
   };
   conf.server = server.c.clone();

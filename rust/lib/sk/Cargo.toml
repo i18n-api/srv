@@ -5,7 +5,7 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
-trt = "0.1.27"
+trt = "0.1.28"
 util = { path = "../util" }
 r = { path = "../r" }
 static_init = { version = "1.0.3", features = [

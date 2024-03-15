@@ -125,3 +125,23 @@ function zsetId(KEYS, ARGS)
 	ZADD(zset, id, key)
 	return id
 end
+
+function zsetTimeId(KEYS, ARGS)
+	local zset = KEYS[1]
+	local key = ARGS[1]
+	local id = ZSCORE(zset, key)
+	if id then
+		return id
+	end
+	id = TS()
+	while true do
+		local r = redis.call("ZRANGE", key, id, id, "BYSCORE", 1)
+		if #r == 0 then
+			break
+		else
+			id = id + 1
+		end
+	end
+	ZADD(zset, id, key)
+	return id
+end

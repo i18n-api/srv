@@ -11,7 +11,7 @@ members = [
   "lib/xerr",
   "lib/xkv",
   "lib/mark",
-  "lib/lang",
+  "lib/i18n",
   "lib/gid",
   "lib/user",
   "lib/util",
@@ -22,7 +22,8 @@ members = [
   "lib/m",
   "lib/ip",
   "lib/ua",
-  "mycron", "lib/uid_by_token",
+  "mycron",
+  "lib/uid_by_token",
 ]
 resolver = "2"
 

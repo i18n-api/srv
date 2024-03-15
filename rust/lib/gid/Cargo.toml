@@ -6,13 +6,13 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
 r = { path = "../../lib/r" }
-vb = "0.1.1"
+vb = "0.1.3"
 paste = "1.0.14"
-anyhow = "1.0.79"
-trt = "0.1.27"
-tokio = { version = "1.35.1", features = ["parking_lot"] }
+anyhow = "1.0.81"
+trt = "0.1.28"
+tokio = { version = "1.36.0", features = ["parking_lot"] }
 sts = "0.1.19"
 static_init = "1.0.3"
 
 [dev-dependencies]
-tokio-test = "0.4.3"
+tokio-test = "0.4.4"

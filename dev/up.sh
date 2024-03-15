@@ -10,7 +10,7 @@ if [ ! -f "mnt/ssl/127.0.0.1-key.pem" ]; then
   bun x mkcert 127.0.0.1
   cd $DIR
 fi
-
+direnv allow
 direnv exec . ./gen.coffee
 direnv exec . docker-compose up -d
 
