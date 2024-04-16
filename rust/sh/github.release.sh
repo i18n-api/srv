@@ -59,8 +59,7 @@ set +x
 $DIR/encrypt.sh $TZT $TZT_PASSWORD
 set -x
 
-echo $TMP
-
+cd $ROOT
 META=$(cargo metadata --format-version=1 --no-deps | jq '.packages[] | .name + " " + .version' -r | grep "^api ")
 NAME=$(echo $META | cut -d ' ' -f1)
 VER=$(echo $META | cut -d ' ' -f2)
