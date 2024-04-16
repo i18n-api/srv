@@ -10,7 +10,11 @@ git pull
 msg=$(git log -1 --pretty=format:'%B' $branch)
 
 if ! [[ $msg =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-  gme $@
+  if [ -z "$1" ]; then
+    grme
+  else
+    gme $@
+  fi
   cd api
   touch Cargo.lock
   cargo v patch -y
