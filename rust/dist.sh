@@ -2,7 +2,7 @@
 
 DIR=$(realpath $0) && DIR=${DIR%/*}
 cd $DIR
-set -e
+set -ex
 
 branch=$(git symbolic-ref --short -q HEAD)
 gci
