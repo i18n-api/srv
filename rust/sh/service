@@ -1,6 +1,6 @@
 [Unit]
 Description=NAME
-After=network.target
+After=network.target kvrocks.service mariadb.service
 
 [Service]
 Type=simple

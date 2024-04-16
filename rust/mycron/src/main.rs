@@ -8,6 +8,9 @@ use tokio::time::sleep;
 
 genv::s!(WARN_MAIL);
 
+// #[static_init::dynamic]
+// pub static HOME: String = dirs::home_dir().unwrap().display().to_string();
+
 pub async fn logerr(cron_id: u32, dir: String, sh: String, code: i32, msg: &[u8]) -> Result<()> {
   let txt = String::from_utf8_lossy(msg);
   let now = sts::sec();
@@ -35,7 +38,11 @@ pub async fn run(
   timeout: u64,
   preok: u64,
 ) -> Result<()> {
-  let cmd = format!("cd \"{root}/{dir}/cron\"&&exec direnv exec . timeout {timeout}m ./{sh}");
+  let cmd = format!(
+    "cd \"{root}/{dir}/cron\"&&exec direnv exec . timeout {timeout}m ./{sh}",
+    // &*HOME
+  );
+  // dbg!(&cmd);
   let start_time = Instant::now();
   print!("{dir} ❯ {sh} ");
 

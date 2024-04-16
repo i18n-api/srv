@@ -1,8 +1,7 @@
-local pwd=$(pwd)
-local dir=$(readlink -f "$BASH_SOURCE")
-local conf=${dir%/*/*}/conf
+pwd=$(pwd)
+dir=$(readlink -f "$BASH_SOURCE")
+conf=${dir%/*/*}/conf
 _init() {
-  local i
   for i in $@; do
     set -o allexport
     source "$i".sh

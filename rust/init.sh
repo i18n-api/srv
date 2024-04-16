@@ -24,7 +24,6 @@ ensure() {
 ensure cargo-expand
 
 e ./sh/gen.coffee
-cargo fmt
 
 api_dir=$(realpath $DIR/../../api-proto-js)
 gen=gen.coffee

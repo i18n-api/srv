@@ -5,7 +5,7 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
-aok = "0.1.3"
+aok = "0.1.11"
 const-str = "0.5.7"
 http = "1.1.0"
 intbin = "0.1.2"

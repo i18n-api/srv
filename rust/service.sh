@@ -4,4 +4,7 @@ DIR=$(realpath $0) && DIR=${DIR%/*}
 cd $DIR
 set -ex
 
-../sh/build.sh $(basename $DIR)
+NAME=api
+ENV=$DIR/env.sh
+WORKDIR=$DIR
+. ./sh/service.sh

@@ -5,13 +5,13 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
-cookie = "0.18.0"
+cookie = "0.18.1"
 ub64 = { version = "0.0.10", features = ["u64", "u64li"] }
 r = { path = "../r" }
 gid = { path = "../gid" }
 m = { path = "../m" }
 sk = { path = "../sk" }
-anyhow = "1.0.81"
+anyhow = "1.0.82"
 vb = "0.1.3"
 tracing = "0.1.40"
 intbin = "0.1.2"
@@ -21,7 +21,7 @@ const-str = "0.5.7"
 ip = { path = "../ip", features = ["http"] }
 ua = { path = "../ua" }
 sonic-rs = "0.3.4"
-sts = "0.1.19"
+sts = "0.1.21"
 static_init = { version = "1.0.3", features = [
   "lock_statistics",
   "parking_lot",
@@ -29,4 +29,4 @@ static_init = { version = "1.0.3", features = [
 ] }
 trt = "0.1.28"
 xhash = "0.1.21"
-chrono = "0.4.35"
+chrono = "0.4.38"

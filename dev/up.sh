@@ -4,13 +4,10 @@ DIR=$(realpath $0) && DIR=${DIR%/*}
 cd $DIR
 set -ex
 
-if [ ! -f "mnt/ssl/127.0.0.1-key.pem" ]; then
-  mkdir -p mnt/ssl
-  cd mnt/ssl
-  bun x mkcert 127.0.0.1
-  cd $DIR
-fi
 direnv allow
+
+./ssl.sh
+
 direnv exec . ./gen.coffee
 direnv exec . docker-compose up -d
 

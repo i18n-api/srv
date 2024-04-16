@@ -1,4 +1,4 @@
-FROM mariadb
+FROM mariadb:11
 
 RUN \
 apt-get update &&\

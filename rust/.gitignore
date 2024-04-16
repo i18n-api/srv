@@ -1,3 +1,4 @@
+Cargo.lock
 .rustcV
 rustc-ice-*.txt
 /url.nt
@@ -5,3 +6,4 @@ rustc-ice-*.txt
 target/
 /api/.url/
 /lib/fred.rs
+/bin/

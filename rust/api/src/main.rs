@@ -6,9 +6,26 @@
 #![feature(let_chains)]
 #![allow(non_snake_case)]
 
+/**
+蚂蚁集团 ｜ 如何在生产环境排查 Rust 内存占用过高问题
+https://rustmagazine.github.io/rust_magazine_2021/chapter_5/rust-memory-troubleshootting.html
+
+开源项目|高性能内存分配库mimalloc
+https://zhuanlan.zhihu.com/p/671433123
+*/
+// use ferroc::Ferroc;
+
+// #[global_allocator]
+// static GLOBAL: Ferroc = Ferroc;
+use jemallocator::Jemalloc;
+
+#[global_allocator]
+static GLOBAL: Jemalloc = Jemalloc;
+
 mod route;
 use axum::{middleware, routing, Router};
 use exepid::exepid;
+use ping_ver::ping_ver;
 use set_header::set_header;
 
 genv::def!(PORT:u16 | 8850);
@@ -21,7 +38,7 @@ async fn main() -> anyhow::Result<()> {
 
   loginit::init();
 
-  let mut router = Router::new();
+  let mut router = ping_ver!(Router::new());
 
   macro_rules! req {
     // (=> $func:ident) => {

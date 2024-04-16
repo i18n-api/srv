@@ -16,6 +16,8 @@ set -ex
 
 cargo build -p api
 
+[[ -d target ]] && cargo sweep --time 30 && cargo sweep --installed
+
 echo "cargo exit with $?"
 
 exec direnv exec . watchexec \

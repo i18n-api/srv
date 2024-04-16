@@ -9,7 +9,6 @@ members = [
   "lib/exepid",
   "lib/sk",
   "lib/xerr",
-  "lib/xkv",
   "lib/mark",
   "lib/i18n",
   "lib/gid",
@@ -43,3 +42,6 @@ strip = true
 # opt-level = 3
 [profile.dev]
 split-debuginfo = "unpacked"
+
+[build]
+rustflags = ["-Z", "threads=8"]

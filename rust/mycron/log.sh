@@ -4,7 +4,4 @@ DIR=$(realpath $0) && DIR=${DIR%/*}
 cd $DIR
 set -ex
 
-cargo build
-
-RUST_BACKTRACE=short \
-  exec cargo test -- --nocapture
+exec journalctl -xfeu $(basename $DIR)

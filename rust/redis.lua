@@ -133,15 +133,18 @@ function zsetTimeId(KEYS, ARGS)
 	if id then
 		return id
 	end
+
 	id = TS()
+
 	while true do
-		local r = redis.call("ZRANGE", key, id, id, "BYSCORE", 1)
+		local r = redis.call("ZRANGE", key, id, id, "BYSCORE", "LIMIT", 0, 1)
 		if #r == 0 then
 			break
 		else
 			id = id + 1
 		end
 	end
+
 	ZADD(zset, id, key)
 	return id
 end
