@@ -10,9 +10,7 @@ git pull
 msg=$(git log -1 --pretty=format:'%B' $branch)
 
 if ! [[ $msg =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-  if [ -z "$1" ]; then
-    grme
-  else
+  if ! [ -z "$1" ]; then
     gme $@
   fi
   cd api
@@ -23,6 +21,7 @@ if ! [[ $msg =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
     git checkout main
     git merge $branch
   fi
+
   git push
   msg=$(git log -1 --pretty=format:'%B' $branch)
   git push github $msg main
