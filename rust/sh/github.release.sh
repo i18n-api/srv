@@ -51,11 +51,11 @@ set -x
 
 TZT=$ARCH-$OS.tar.zst
 
-ZSTD_CLEVEL=19 tar -I zstd -cvpf ../$TZT .
+ZSTD_CLEVEL=19 tar --owner=root --group=root -I zstd -cvpf ../$TZT .
 
 cd ..
 set +x
-. $ROOT/../../conf/env/GITHUB_TAR.sh
+. $ROOT/../../dist/GITHUB_TAR.sh
 $DIR/encrypt.sh $TZT $TZT_PASSWORD
 set -x
 
