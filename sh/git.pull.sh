@@ -14,7 +14,7 @@ pull() {
   name=${name%.git}
 
   if [ -d "$name" ]; then
-    git -C $name pull &
+    git -C $name pull
   else
     git clone -b dev --depth=1 $1
   fi
@@ -24,13 +24,18 @@ pull git@atomgit.com:i18n/rust.git
 pull git@atomgit.com:i18n-in/in.git
 pull git@atomgit.com:i18n-ol/conf.git
 
-cd $DIR
-source mod.sh
-mkdir -p mod
-cd mod
+MOD=$DIR/mod
+source $DIR/mod.sh
+mkdir -p $MOD
+cd $MOD
+
 for i in ${MOD_LI[@]}; do
   pull $i
+  gitdir=$(basename $i)
+  gitdir=${gitdir%.git}
+  cd $gitdir
+  find . -name .envrc -print0 | xargs -0 -I {} bash -c "set -ex && cd \$(dirname {}) && direnv allow"
+  cd $MOD
 done
 
-git pull &
-wait
+git pull

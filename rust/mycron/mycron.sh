@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
 
+set -ex
 . /etc/profile
 
 export HOME=/root
 
-cd $HOME/i18n/srv
+I18N=$HOME/i18n
+SRV=$I18N/srv
 
+cd $I18N/conf
 set -o allexport
-. env.sh
-. rust/env.sh
+. $SRV/env.sh
+. $SRV/rust/env.sh
 set +o allexport
 
-exec /opt/bin/mycron $@
+exec /opt/bin/mycron $SRV/mod
