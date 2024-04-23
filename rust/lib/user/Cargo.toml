@@ -20,7 +20,7 @@ kfn = { version = "0.1.0", path = "../kfn" }
 const-str = "0.5.7"
 ip = { path = "../ip", features = ["http"] }
 ua = { path = "../ua" }
-sonic-rs = "0.3.4"
+sonic-rs = "0.3.5"
 sts = "0.1.21"
 static_init = { version = "1.0.3", features = [
   "lock_statistics",

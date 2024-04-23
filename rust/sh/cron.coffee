@@ -34,6 +34,7 @@ for mod from load MOD+'.nt'
   dir = join MOD,mod
   cron_nt = join dir,'cron/cron.nt'
   if existsSync cron_nt
+    console.log(cron_nt)
     nt = load cron_nt
     await load_nt mod, nt
 
