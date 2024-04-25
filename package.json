@@ -28,7 +28,7 @@
     "@ltd/j-toml": "^1.38.0",
     "chalk": "^5.3.0",
     "toml-patch": "^0.2.3",
-    "zx": "^8.0.1"
+    "zx": "^8.0.2"
   },
   "devDependencies": {}
 }

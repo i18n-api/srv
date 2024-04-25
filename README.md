@@ -1,3 +1,5 @@
+[![api](https://github.com/i18n-api/srv/actions/workflows/api.yml/badge.svg)](https://github.com/i18n-api/srv/actions/workflows/api.yml)
+
 开发请先安装 docker ( mac 推荐安装 [orbstock](https://orbstack.dev) ), 然后运行
 
 ```
