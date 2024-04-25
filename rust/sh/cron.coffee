@@ -8,6 +8,8 @@
   path > dirname join
   zx/globals:
 
+$.verbose = true
+
 BASE = dirname(ROOT)
 MOD = join BASE, 'mod'
 
@@ -18,8 +20,7 @@ load_nt = (dir, nt)=>
   for [sh, minute_timeout] from Object.entries nt
     [minute, timeout] = minute_timeout.split(' ').map (i)=>Number.parseInt(i)
     console.log dir,sh,'minute',minute,'timeout',timeout
-    cd join(MOD, dir, 'cron')
-    await $"direnv allow && timeout #{timeout} direnv exec . ./#{sh}"
+    await $"cd #{join(MOD, dir, 'cron')} && direnv allow && timeout #{timeout} direnv exec . ./#{sh}"
     pli.push '(?,?,?,?)'
     vli.push dir, sh, minute, timeout
 
