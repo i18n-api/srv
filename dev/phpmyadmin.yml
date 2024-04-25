@@ -5,7 +5,7 @@ services:
   dbui:
     image: phpmyadmin/phpmyadmin
     ports:
-      - 8001:80
+      - 7778:80
     volumes:
       - ./mnt/cache/phpmyadmin/session/:/sessions/
       - ./conf/phpmyadmin.config.php:/etc/phpmyadmin/config.user.inc.php
