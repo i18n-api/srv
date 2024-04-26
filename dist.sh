@@ -7,7 +7,7 @@ set -ex
 branch=$(git symbolic-ref --short -q HEAD)
 gci
 git pull
-msg=$(git log -1 --pretty=format:'%B' $branch)
+msg=$(git log -1 --pretty=format:'%B' -b $branch)
 
 if ! [ -z "$1" ]; then
   gme $@
@@ -23,6 +23,6 @@ if [ "$branch" != "main" ]; then
 fi
 
 git push
-msg=$(git log -1 --pretty=format:'%B' $branch)
+msg=$(git log -1 --pretty=format:'%B' -b $branch)
 git push github $msg main
 git checkout $branch
