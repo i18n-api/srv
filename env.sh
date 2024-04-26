@@ -2,7 +2,9 @@ _init() {
   cd $1
   shift
   for i in $@; do
+    set -o allexport
     . "$i".sh
+    set +o allexport
   done
   cd ..
 }

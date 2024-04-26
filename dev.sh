@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
 DIR=$(realpath $0) && DIR=${DIR%/*}
-cd $DIR/rust
+cd $DIR
+. rust/sh/pid.sh
 
-source ./sh/pid.sh
+if [ "$MYSQL_HOST" = "127.0.0.1" ]; then
+  lsof -i:$MYSQL_PORT >/dev/null || ../srv.docker/up.sh
+fi
 
+cd rust
 watchdir=""
 for dir in ./url/*; do
   if [ -L "$dir" ] && [ -d "$dir" ]; then
@@ -13,10 +17,6 @@ for dir in ./url/*; do
 done
 
 set -ex
-
-cargo build -p api
-
-[[ -d target ]] && cargo sweep --time 30 && cargo sweep --installed
 
 echo "cargo exit with $?"
 
