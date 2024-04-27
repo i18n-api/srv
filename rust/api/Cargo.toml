@@ -20,7 +20,7 @@ r = { path = "../lib/r" }
 exepid = { path = "../lib/exepid" }
 const-str = "0.5.7"
 url = { path = "./.url" }
-set_header = "0.1.7"
+set_header = { version = "0.1.7", path = "../../../rust/set_header" }
 re = "0.1.5"
 t3 = "0.1.9"
 loginit = "0.1.10"
