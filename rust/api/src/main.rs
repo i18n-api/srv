@@ -30,7 +30,7 @@ use set_header::set_header;
 
 genv::def!(PORT:u16 | 8850);
 
-#[tokio::main(flavor = "multi_thread")]
+#[tokio::main]
 async fn main() -> anyhow::Result<()> {
   exepid()?;
   // let prepare =
