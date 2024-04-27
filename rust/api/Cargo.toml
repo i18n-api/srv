@@ -22,7 +22,7 @@ const-str = "0.5.7"
 url = { path = "./.url" }
 set_header = { version = "0.1.7", path = "../../../rust/set_header" }
 re = "0.1.5"
-t3 = "0.1.9"
+t3 = "0.1.12"
 loginit = "0.1.10"
 genv = "0.1.7"
 # ferroc = "0.3.0"
