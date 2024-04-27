@@ -20,9 +20,9 @@ r = { path = "../lib/r" }
 exepid = { path = "../lib/exepid" }
 const-str = "0.5.7"
 url = { path = "./.url" }
-set_header = { version = "0.1.7" }
+set_header = { version = "0.1.8" }
 re = "0.1.5"
-t3 = "0.1.12"
+t3 = "0.1.13"
 loginit = "0.1.10"
 genv = "0.1.7"
 # ferroc = "0.3.0"
