@@ -105,13 +105,6 @@ jobs:
           lfs: true
           token: ${{ secrets.GH_PAT }}
 
-      - name: Save Cache
-        uses: actions/cache/save@v4
-        with:
-          key: ${{ runner.os }}-${{ env.RUST_VER }}-cache
-          path: |
-            ~/cache/rust/target
-
       - name: github release
         shell: bash
         env:
@@ -120,6 +113,13 @@ jobs:
           curl -sfL https://direnv.net/install.sh | bash
           srv/init.sh
           srv/rust/sh/github.release.sh
+
+      - name: save cache
+        uses: actions/cache/save@v4
+        with:
+          key: ${{ runner.os }}-${{ env.RUST_VER }}-cache
+          path: |
+            ~/cache/rust/target
 
       - name: 部署到线上服务器
         shell: bash
