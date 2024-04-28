@@ -42,7 +42,6 @@ pub async fn run(
     "cd \"{root}/{dir}/cron\"&&exec direnv exec . timeout {timeout}m ./{sh}",
     // &*HOME
   );
-  // dbg!(&cmd);
   let start_time = Instant::now();
   print!("{dir} ❯ {sh} ");
 
