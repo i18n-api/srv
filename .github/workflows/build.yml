@@ -50,6 +50,10 @@ jobs:
             components: rust-src
             # components: rustfmt, clippy
 
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: rust
+
       - name: clone in
         uses: actions/checkout@v4
         with:
