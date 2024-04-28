@@ -51,16 +51,19 @@ jobs:
             components: rust-src
             # components: rustfmt, clippy
 
-      - name: cache rust
+      - name: init rust
         shell: bash
         run: |
+          echo "RUST_VER=$(rustc -vV | awk '/date:/ { print $2 }')" >> $GITHUB_ENV
           mkdir -p ~/cache/rust/target ~/.cargo
           echo -e "[build]\ntarget-dir = \"$HOME/cache/rust/target\"" >~/.cargo/config.toml
 
-      - uses: Swatinem/rust-cache@v2
+      - name: restore cache
+        uses: actions/cache/restore@v4
         with:
-          cache-directories: ~/cache/
-          working-directory: srv/rust
+          key: ${{ runner.os }}-${{ env.RUST_VER }}-cache
+          path: |
+            ~/cache/rust/target
 
       - name: clone in
         uses: actions/checkout@v4
@@ -92,6 +95,7 @@ jobs:
           path: srv/mod/pub
           set-safe-directory: false
           lfs: true
+
       - name: clone srv/mod/private
         uses: actions/checkout@v4
         with:
@@ -100,6 +104,13 @@ jobs:
           set-safe-directory: false
           lfs: true
           token: ${{ secrets.GH_PAT }}
+
+      - name: Save Cache
+        uses: actions/cache/save@v4
+        with:
+          key: ${{ runner.os }}-${{ env.RUST_VER }}-cache
+          path: |
+            ~/cache/rust/target
 
       - name: github release
         shell: bash
