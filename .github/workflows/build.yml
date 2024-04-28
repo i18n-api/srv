@@ -63,7 +63,8 @@ jobs:
         with:
           key: ${{ runner.os }}-${{ env.RUST_VER }}-cache
           path: |
-            ~/cache/rust/target
+            ~/cache
+            ~/.cargo
 
       - name: clone in
         uses: actions/checkout@v4
@@ -119,7 +120,8 @@ jobs:
         with:
           key: ${{ runner.os }}-${{ env.RUST_VER }}-cache
           path: |
-            ~/cache/rust/target
+            ~/cache
+            ~/.cargo
 
       - name: 部署到线上服务器
         shell: bash
