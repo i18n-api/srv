@@ -14,7 +14,10 @@ pull() {
   name=${name%.git}
 
   if [ -d "$name" ]; then
-    git -C $name pull
+    pwddir=$(pwd)
+    cd $name
+    git fetch --all && git reset --hard origin/dev
+    cd $pwddir
   else
     git clone -b dev --depth=1 $1
   fi
