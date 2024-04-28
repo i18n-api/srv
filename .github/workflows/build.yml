@@ -33,6 +33,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: latest
+
       - uses: oven-sh/setup-bun@v1
       - name: Install Protoc
         if: runner.os != 'macOS'
