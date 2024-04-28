@@ -51,9 +51,15 @@ jobs:
             components: rust-src
             # components: rustfmt, clippy
 
+      - name: cache rust
+        shell: bash
+        run: |
+          mkdir -p /cache/rust/target ~/.cargo
+          echo -e "[build]\ntarget-dir = \"/cache/rust/target\"" >~/.cargo/config.toml
+
       - uses: Swatinem/rust-cache@v2
         with:
-          workspaces: srv/rust
+          cache-directories: /cache/
 
       - name: clone in
         uses: actions/checkout@v4
