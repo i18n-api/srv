@@ -55,7 +55,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p ~/cache/rust/target ~/.cargo
-          echo -e "[build]\ntarget-dir = \"/cache/rust/target\"" >~/.cargo/config.toml
+          echo -e "[build]\ntarget-dir = \"$HOME/cache/rust/target\"" >~/.cargo/config.toml
 
       - uses: Swatinem/rust-cache@v2
         with:
