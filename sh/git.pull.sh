@@ -16,7 +16,7 @@ pull() {
   if [ -d "$name" ]; then
     pwddir=$(pwd)
     cd $name
-    git fetch --all && git reset --hard origin/dev
+    git pull || (git fetch --all && git reset --hard origin/dev)
     cd $pwddir
   else
     git clone -b dev --depth=1 $1
