@@ -60,6 +60,7 @@ jobs:
       - uses: Swatinem/rust-cache@v2
         with:
           cache-directories: ~/cache/
+          working-directory: srv/rust
 
       - name: clone in
         uses: actions/checkout@v4
