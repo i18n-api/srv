@@ -6,7 +6,6 @@ on:
       - main
     paths:
       - rust/api/Cargo.toml
-
   workflow_dispatch:
 
 jobs:
