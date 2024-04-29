@@ -1,0 +1,10 @@
+[package]
+name = "kfn"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+convert_case = "0.6.0"
