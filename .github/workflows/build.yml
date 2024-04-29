@@ -41,22 +41,21 @@ jobs:
         with:
           repo-token: ${{ github.token }}
 
+      - name: init rust
+        shell: bash
+        run: |
+          node -e "console.log('RUST_VER='+new Date(new Date()-864e5*27).toISOString().slice(0,8)+'25')" >> $GITHUB_ENV
+          mkdir -p ~/cache/rust/target ~/.cargo
+          echo -e "[build]\ntarget-dir = \"$HOME/cache/rust/target\"" >~/.cargo/config.toml
+
       - name: rust-toolchain
         uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
             # https://github.com/dalek-cryptography/curve25519-dalek/issues/618
-            toolchain: nightly
-            # toolchain: nightly-2024-05-04
+            toolchain: nightly-${{ env.RUST_VER }}
             cache: false
             components: rust-src
             # components: rustfmt, clippy
-
-      - name: init rust
-        shell: bash
-        run: |
-          echo "RUST_VER=$(rustc -vV | awk '/date:/ { print $2 }')" >> $GITHUB_ENV
-          mkdir -p ~/cache/rust/target ~/.cargo
-          echo -e "[build]\ntarget-dir = \"$HOME/cache/rust/target\"" >~/.cargo/config.toml
 
       - name: restore cache
         uses: actions/cache/restore@v4
@@ -65,6 +64,14 @@ jobs:
           path: |
             ~/cache
             ~/.cargo
+
+      - name: install cargo expand
+        shell: bash
+        run: |
+          if ! command -v cargo-expand &>/dev/null; then
+            curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+            cargo binstall cargo-expand -y
+          fi
 
       - name: clone in
         uses: actions/checkout@v4

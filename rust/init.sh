@@ -16,7 +16,7 @@ APT_URL=api/.url
 ensure() {
   for pkg in "$@"; do
     if ! command -v $pkg &>/dev/null; then
-      cargo install $pkg
+      cargo install $pkg --locked
     fi
   done
 }

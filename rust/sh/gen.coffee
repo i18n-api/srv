@@ -15,6 +15,7 @@
   toml-patch > parse patch
   zx/globals:
 
+$.verbose = true
 
 {greenBright} = chalk
 
