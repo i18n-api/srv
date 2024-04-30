@@ -13,6 +13,6 @@ intbin = "0.1.2"
 set_header = "0.1.8"
 apart = "0.1.8"
 re = "0.1.5"
-t3 = "0.1.13"
+t3 = "0.1.14"
 aok = "0.1.11"
 uid_by_token = { version = "0.1.0", path = "../uid_by_token" }

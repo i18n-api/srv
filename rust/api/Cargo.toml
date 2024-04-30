@@ -22,7 +22,7 @@ const-str = "0.5.7"
 url = { path = "./.url" }
 set_header = { version = "0.1.8" }
 re = "0.1.5"
-t3 = "0.1.13"
+t3 = "0.1.14"
 loginit = "0.1.10"
 genv = "0.1.7"
 ping_ver = "0.1.3"
