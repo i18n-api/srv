@@ -32,9 +32,9 @@ opt-level = 3
 incremental = true
 codegen-units = 1
 overflow-checks = false
-panic = 'abort'
+# panic = 'abort'
+# strip = true
 debug-assertions = false
-strip = true
 
 # [profile.dev]
 # opt-level = 1
