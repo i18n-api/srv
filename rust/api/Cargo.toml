@@ -5,7 +5,7 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
-anyhow = "1.0.82"
+anyhow = "1.0.83"
 axum = "0.7.5"
 rand = "0.8.5"
 tokio = { version = "1.37.0", features = [
@@ -22,7 +22,7 @@ const-str = "0.5.7"
 url = { path = "./.url" }
 set_header = { version = "0.1.8" }
 re = "0.1.5"
-t3 = "0.1.14"
+t3 = "0.1.16"
 loginit = "0.1.10"
 genv = "0.1.7"
 ping_ver = "0.1.3"
