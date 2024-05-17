@@ -1,0 +1,14 @@
+[package]
+name = "uid_by_token"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+aok = "0.1.11"
+http = "1.1.0"
+intbin = "0.1.2"
+r = { version = "0.1.0", path = "../r" }
+ub64 = { version = "0.0.10" }
+vb = "0.1.3"
