@@ -1,3 +1,6 @@
+RUST_BACKTRACE=short
+RUST_LOG=debug,supervisor=warn,hyper=warn,rustls=warn,h2=warn,tower=warn,reqwest=warn,watchexec=warn,fred=info,globset=warn,process_wrap=warn
+
 _init() {
   cd $1
   shift
