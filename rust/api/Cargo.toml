@@ -1,11 +1,11 @@
 [package]
 name = "api"
-version = "0.1.52"
+version = "0.1.53"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
-anyhow = "1.0.83"
+anyhow = "1.0.86"
 axum = "0.7.5"
 rand = "0.8.5"
 tokio = { version = "1.37.0", features = [
