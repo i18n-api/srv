@@ -6,7 +6,7 @@ set -e
 
 ROOT=$(dirname $DIR)
 cd $ROOT
-ENVSH="$(cat env.sh);\n$(cat ../env.sh)"
+ENVSH="$(cat env.sh)\n$(cat ../env.sh)"
 
 rm -rf bin
 
