@@ -24,11 +24,3 @@ ensure() {
 ensure cargo-expand
 
 e ./sh/gen.coffee
-
-api_dir=$(realpath $DIR/../../proto)
-gen=gen.coffee
-if [ -f "$api_dir/$gen" ]; then
-  cd $api_dir
-  direnv allow
-  e ./$gen
-fi
