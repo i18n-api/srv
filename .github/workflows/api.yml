@@ -11,6 +11,7 @@ on:
 jobs:
   build:
     permissions:
+      actions: write
       repository-projects: write
       contents: write
     uses: ./.github/workflows/build.yml
