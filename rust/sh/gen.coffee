@@ -79,9 +79,8 @@ POST_LI.sort()
 GET_LI.sort()
 GET_PATH_LI.sort()
 
-console.log ''
-await Promise.all load(join(BASE,'mod.nt')).map(gen)
-console.log ''
+for i from load join(BASE,'mod.nt')
+  await gen(i)
 
 route_li = []
 if POST_LI.length
