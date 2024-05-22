@@ -19,8 +19,20 @@ run() {
   direnv exec . ./$1.sh
 }
 
+e() {
+  direnv exec . $@
+}
+
 cd $DIR/rust
 
 run init
 
-direnv exec . ./sh/cron.coffee
+e ./sh/cron.coffee
+
+api_dir=$(realpath $DIR/../proto)
+gen=gen.coffee
+if [ -f "$api_dir/$gen" ]; then
+  cd $api_dir
+  direnv allow
+  e ./$gen
+fi

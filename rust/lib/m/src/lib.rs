@@ -280,15 +280,15 @@ $crate::hostId($host).await?
 };
 }
 
-pub async fn payBillNew(cid:u16,kid:u64,rid:u64,uid:u64,amount:i64,ts:u64)->Result<i64>{
-let sql = format!("SELECT payBillNew({cid},{kid},{rid},{uid},{amount},{ts})");
+pub async fn payBillNew(uid:u64,cid:u16,kid:u64,rid:u64,amount:i64,ts:u64)->Result<i64>{
+let sql = format!("SELECT payBillNew({uid},{cid},{kid},{rid},{amount},{ts})");
   Ok(q1!(sql))
 }
 
 #[macro_export]
 macro_rules! payBillNew {
-($cid:expr,$kid:expr,$rid:expr,$uid:expr,$amount:expr,$ts:expr) => {
-$crate::payBillNew($cid,$kid,$rid,$uid,$amount,$ts).await?
+($uid:expr,$cid:expr,$kid:expr,$rid:expr,$amount:expr,$ts:expr) => {
+$crate::payBillNew($uid,$cid,$kid,$rid,$amount,$ts).await?
 };
 }
 
@@ -312,6 +312,18 @@ let sql = format!("SELECT payIndex({uid},{begin},{end})");
 macro_rules! payIndex {
 ($uid:expr,$begin:expr,$end:expr) => {
 $crate::payIndex($uid,$begin,$end).await?
+};
+}
+
+pub async fn payStripeRm(uid:u64,id:u64)->Result<u8>{
+let sql = format!("SELECT payStripeRm({uid},{id})");
+  Ok(q1!(sql))
+}
+
+#[macro_export]
+macro_rules! payStripeRm {
+($uid:expr,$id:expr) => {
+$crate::payStripeRm($uid,$id).await?
 };
 }
 

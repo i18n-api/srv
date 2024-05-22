@@ -27,8 +27,6 @@ pub fn ip_by_header_addr(headers: &HeaderMap, addr: &SocketAddr) -> IpAddr {
     .get(HEADER_X_FORWARDED_FOR)
     .and_then(|value| value.to_str().ok())
     .and_then(|value| value.split(',').next().map(str::trim))
-    .and_then(|ip| {
-      ip.parse::<IpAddr>().ok()
-    })
+    .and_then(|ip| ip.parse::<IpAddr>().ok())
     .unwrap_or_else(|| addr.ip())
 }
