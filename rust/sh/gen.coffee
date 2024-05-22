@@ -11,7 +11,7 @@
   @ltd/j-toml:Toml
   chalk
   fs > existsSync readdirSync statSync symlinkSync
-  path > join dirname basename
+  path > join dirname basename resolve
   toml-patch > parse patch
   zx/globals:
 
@@ -42,6 +42,8 @@ GET_PATH_LI = []
 IMPORT = []
 
 gen = (name)=>
+  if EXIST_MOD.has name
+    return
   EXIST_MOD.add name
   dir = join DIR_MOD, name
   cargo = join dir, 'Cargo.toml'
@@ -51,12 +53,9 @@ gen = (name)=>
   for [i, val] in Object.entries(cargo.dependencies or {})
     {path} = val
     if path
-      rel = '../'
-      if path.lastIndexOf(rel) == path.indexOf(rel)
-        mod = join(split(name,'/')[0],basename(path))
-        if not EXIST_MOD.has mod
-          EXIST_MOD.add mod
-          await gen mod
+      mod_dir = resolve(join(dir, path))
+      if mod_dir.startsWith(DIR_MOD)
+        await gen mod_dir.slice(DIR_MOD.length+1)
 
   lib_rs = join(dir,'src/lib.rs')
   if not existsSync lib_rs
