@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     permissions:
+      actions: write
       repository-projects: write
       contents: write
     name: build
@@ -44,7 +45,7 @@ jobs:
       - name: init rust
         shell: bash
         run: |
-          bun -e "console.log('RUST_VER='+new Date(new Date()-864e5*2).toISOString().slice(0,8)+'01')" >> $GITHUB_ENV
+          bun -e "console.log('RUST_VER='+new Date(new Date()-864e5*21).toISOString().slice(0,8)+'19')" >> $GITHUB_ENV
           mkdir -p ~/cache/rust/target ~/.cargo
           echo -e "[build]\ntarget-dir = \"$HOME/cache/rust/target\"" >~/.cargo/config.toml
 
