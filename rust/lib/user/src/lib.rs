@@ -33,10 +33,7 @@ use ua::Ua;
 use ub64::bin_u64_li;
 use xhash::hash64;
 
-kfn!(
-    clientUid
-    uidClient
-);
+kfn!(clientUid);
 
 /// cookie 中的 day 每10天为一个周期，超过41个周期没访问就认为无效 https://chromestatus.com/feature/4887741241229312
 pub const MAX_INTERVAL: u64 = 41;
@@ -145,7 +142,11 @@ impl ClientUser {
     Ok(())
   }
 
-  pub async fn zumax<R: FromRedis, C: FunctionInterface + Sync>(&self, p: &C) -> RedisResult<R> {
+  /// 浏览器可以同时登录多个用户, 这是找到最后一个登录的用户作为当前用户
+  pub async fn last_user<R: FromRedis, C: FunctionInterface + Sync>(
+    &self,
+    p: &C,
+  ) -> RedisResult<R> {
     let key = client_uid(&self.bin());
     p.fcall(ZUMAX, &[key], ()).await
   }
@@ -163,7 +164,7 @@ impl ClientUser {
   pub async fn uid(&self) -> RedisResult<Option<u64>> {
     let uid = self._uid.load(Relaxed);
     Ok(if UID_STATE_UNSET == uid {
-      self.set_uid_bin(self.zumax(&**R).await?)
+      self.set_uid_bin(self.last_user(&**R).await?)
     } else if uid == UID_STATE_NOUSER {
       None
     } else {
