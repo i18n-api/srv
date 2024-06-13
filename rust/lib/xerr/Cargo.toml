@@ -1,0 +1,12 @@
+[package]
+name = "xerr"
+version = "0.1.1"
+edition = "2021"
+license = "Apache-2.0"
+homepage = "https://github.com/3TiSite/srv/tree/main/rust/lib/xerr"
+repository = "https://github.com/3TiSite/srv.git"
+description = "log error util"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+tracing = "0.1.40"
