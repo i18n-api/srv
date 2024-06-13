@@ -16,7 +16,7 @@ pub fn lang_bin(lang: &str) -> Box<[u8]> {
 }
 
 pub fn lang_id(lang: &str) -> u8 {
-  if let Some(p) = LANG.get_index(lang) {
+  if let Some(p) = CODE_ID.get_index(lang) {
     return p as _;
   }
   0
