@@ -48,13 +48,18 @@ async fn main() -> anyhow::Result<()> {
         req!($method $wrap $($url=>$url);+)
     };
     ($method:ident $wrap:ident $($url:stmt => $func:ident);+) => {
-        $(
+        $({
+          const URL:&str = stringify!($url);
           req!(
               $method
               $wrap
               const_str::replace!(
                   const_str::replace!(
-                      const_str::unwrap!(const_str::strip_suffix!(stringify!($url), ";")),
+                      if(const_str::ends_with!(URL, ";")) {
+                        const_str::unwrap!(const_str::strip_suffix!(URL, ";"))
+                      }else{
+                        URL
+                      },
                       " ",
                       ""
                   ),
@@ -63,7 +68,7 @@ async fn main() -> anyhow::Result<()> {
               ),
               $func
           );
-        )+
+          })+
     };
     ($method:ident $wrap:ident $url:expr, $func:ident) => {
       router = router.route(

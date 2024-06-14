@@ -1,6 +1,10 @@
-# > @3-/i18n
+> @3-/i18n-rust:i18nRust
+  fs > readdirSync
 
 < (dir) =>
-  console.log 'TODO i18n',dir
-  # await i18n dir
+  li = readdirSync(dir).filter(
+    (i)=>not i.startsWith('.')
+  )
+
+  i18nRust(dir, li)
   return

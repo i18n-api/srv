@@ -1,7 +1,7 @@
 #!/usr/bin/env coffee
 
 > ./conf > ROOT PWD
-  ./i18n
+  ./i18n.coffee
   ./rm_target_if_rustc_ver_change.coffee:rmTarget
   @3-/split
   @3-/apint
@@ -147,12 +147,11 @@ run = (name)=>
 
 await (await import('./lua.coffee')).default()
 
-# console.log MOD_LI
-# for mod from MOD_LI
-#   mod_dir = join BASE,'mod',mod
-#   url_i18n = join mod_dir,'i18n'
-#   if existsSync join url_i18n,'i18n.nt'
-#     await i18n url_i18n
+for mod from MOD_LI
+  mod_dir = join BASE,'mod',mod
+  url_i18n = join mod_dir,'i18n'
+  if existsSync join url_i18n,'.i18n/conf.yml'
+    await i18n url_i18n
 
 await run 'hookEnd'
 
