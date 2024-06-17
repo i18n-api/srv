@@ -22,8 +22,12 @@ chrono = "0.4.38"
 sts = "0.1.23"
 genv = "0.1.10"
 xsmtp = "0.1.9"
+static_init = "1.0.3"
+tracing = "0.1.40"
 # dirs = "5.0.1"
 
 # [target.x86_64-unknown-linux-gnu]
 # linker = "clang"
 # rustflags = ["-C", "link-arg=-fuse-ld=/usr/bin/mold"]
+[package.metadata.cargo-machete]
+ignored = ["static_init", "tracing"]
