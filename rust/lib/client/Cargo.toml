@@ -1,0 +1,17 @@
+[package]
+name = "client"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+axum = "0.7.5"
+user = { path = "../user" }
+tracing = "0.1.40"
+xtld = "0.1.1"
+set_header = "0.1.9"
+apart = "0.1.9"
+re = "0.1.6"
+t3 = "0.1.17"
+aok = "0.1.12"
+uid_by_token = { version = "0.1.0", path = "../uid_by_token" }
