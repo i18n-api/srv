@@ -63,6 +63,7 @@ pub async fn run(
       if code == 0 {
         let now = sts::min();
         let begin = if preok == 0 { now } else { preok };
+        tracing::info!("{cron_id} now {now} next={begin}+minute");
         m::e!(format!(
           "UPDATE cron SET next={begin}+minute,preok={now} WHERE id={cron_id}"
         ))
@@ -78,11 +79,16 @@ pub async fn run(
   Ok(())
 }
 
+pub const MAX_RUN: usize = 1440; // 每天重启防止内存泄露
+
 #[tokio::main]
 async fn main() -> Result<()> {
+  loginit::init();
+  let mut rund = 0;
   if let Some(root) = std::env::args().nth(1) {
     loop {
-      println!("{}", Local::now().format("%Y-%m-%d %H:%M:%S"));
+      rund += 1;
+      println!("{} {}", rund, Local::now().format("%Y-%m-%d %H:%M:%S"));
       let start_time = Instant::now();
       let li: Vec<(u32, String, String, u64, u64)> = m::q!("CALL cronLi()");
       for (id, dir, sh, timeout, preok) in li {
@@ -93,6 +99,9 @@ async fn main() -> Result<()> {
       let minute = Duration::from_secs(60);
       if elapsed < minute {
         sleep(minute - elapsed).await;
+      }
+      if rund > MAX_RUN {
+        return Ok(());
       }
     }
   } else {

@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-
-set -ex
+set -e
 . /etc/profile
 
-export HOME=/root
+if [ -z "$HOME" ]; then
+  export HOME=/root
+fi
 
 I18N=$HOME/i18n
 SRV=$I18N/srv
@@ -11,7 +12,7 @@ SRV=$I18N/srv
 cd $I18N/conf
 set -o allexport
 . $SRV/env.sh
-. $SRV/rust/env.sh
 set +o allexport
 
-exec /opt/bin/mycron $SRV/mod
+set -x
+exec timeout 25h /opt/bin/mycron $SRV/mod
