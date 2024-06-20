@@ -30,14 +30,7 @@ pub async fn logerr(cron_id: u32, dir: String, sh: String, code: i32, msg: &[u8]
   Ok(())
 }
 
-pub async fn run(
-  root: String,
-  cron_id: u32,
-  dir: String,
-  sh: String,
-  timeout: u64,
-  preok: u64,
-) -> Result<()> {
+pub async fn run(root: String, cron_id: u32, dir: String, sh: String, timeout: u64) -> Result<()> {
   let cmd = format!(
     "cd \"{root}/{dir}/cron\"&&exec mise exec -- timeout {timeout}m ./{sh}",
     // &*HOME
@@ -62,8 +55,7 @@ pub async fn run(
       };
       if code == 0 {
         let now = sts::min();
-        let begin = if preok == 0 { now } else { preok };
-        tracing::info!("{cron_id} now {now} next={begin}+minute");
+        let begin = now - elapsed.as_secs() / 60;
         m::e!(format!(
           "UPDATE cron SET next={begin}+minute,preok={now} WHERE id={cron_id}"
         ))
@@ -90,9 +82,9 @@ async fn main() -> Result<()> {
       rund += 1;
       println!("{} {}", rund, Local::now().format("%Y-%m-%d %H:%M:%S"));
       let start_time = Instant::now();
-      let li: Vec<(u32, String, String, u64, u64)> = m::q!("CALL cronLi()");
-      for (id, dir, sh, timeout, preok) in li {
-        xerr::log!(tokio::spawn(run(root.clone(), id, dir, sh, timeout, preok)).await);
+      let li: Vec<(u32, String, String, u64)> = m::q!("CALL cronLi()");
+      for (id, dir, sh, timeout) in li {
+        xerr::log!(tokio::spawn(run(root.clone(), id, dir, sh, timeout)).await);
       }
 
       let elapsed = start_time.elapsed();

@@ -83,7 +83,8 @@ impl ClientUser {
   ) -> RedisResult<()> {
     let bin = &self.bin()[..];
     let score = if sign_in { time as _ } else { -(time as f64) };
-    p.zadd(client_uid(bin), None, None, false, false, (score, uid_bin))
+    () = p
+      .zadd(client_uid(bin), None, None, false, false, (score, uid_bin))
       .await?;
     Ok(())
   }
@@ -138,7 +139,7 @@ impl ClientUser {
 
   pub async fn set<C: FunctionInterface + Sync>(&self, p: &C, uid: &[u8]) -> RedisResult<()> {
     let bin = &self.bin()[..];
-    p.fcall(ZSET_GT0_NOW, &[client_uid(bin)], &[uid]).await?;
+    () = p.fcall(ZSET_GT0_NOW, &[client_uid(bin)], &[uid]).await?;
     Ok(())
   }
 
@@ -192,15 +193,15 @@ impl ClientUser {
       sql += INSERT_UID_CLIENT_S;
       m::bg!(sql);
 
-      p.del(key).await?;
-      p.all().await?;
+      () = p.del(key).await?;
+      () = p.all().await?;
     }
     Ok(())
   }
 
   pub async fn rm<C: SortedSetsInterface + Sync>(&self, p: &C, uid: &[u8]) -> RedisResult<()> {
     let bin = &self.bin()[..];
-    p.zrem(client_uid(bin), &[uid]).await?;
+    () = p.zrem(client_uid(bin), &[uid]).await?;
     Ok(())
   }
 

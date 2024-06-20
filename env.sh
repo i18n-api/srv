@@ -34,7 +34,7 @@ _init() {
   cd ..
 }
 
-_init srv port
+_init srv port env
 _init env stripe db smtp r ipv6_proxy warn_mail
 
 unset -f _init
