@@ -5,3 +5,4 @@ node_modules/
 /mod/
 Cargo.lock
 /tmp/env
+/rust/lib/m/src/lib.rs

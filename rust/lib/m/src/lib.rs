@@ -327,15 +327,15 @@ $crate::payStripeRm($uid,$id).await?
 };
 }
 
-pub async fn tokenRefresh(id:u64,uid:u64,sk:u64,day:u64)->Result<i8>{
-let sql = format!("SELECT tokenRefresh({id},{uid},{sk},{day})");
+pub async fn tokenRefresh(id:u64,uid:u64,ts:u64)->Result<i8>{
+let sql = format!("SELECT tokenRefresh({id},{uid},{ts})");
   Ok(q1!(sql))
 }
 
 #[macro_export]
 macro_rules! tokenRefresh {
-($id:expr,$uid:expr,$sk:expr,$day:expr) => {
-$crate::tokenRefresh($id,$uid,$sk,$day).await?
+($id:expr,$uid:expr,$ts:expr) => {
+$crate::tokenRefresh($id,$uid,$ts).await?
 };
 }
 

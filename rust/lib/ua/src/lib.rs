@@ -30,11 +30,7 @@ fn as_u16(i: u64) -> u16 {
 }
 
 fn parse_u16(i: &str) -> u16 {
-  if let Ok(i) = i.parse() {
-    i
-  } else {
-    0
-  }
+  i.parse().unwrap_or_default()
 }
 
 impl Ua {
