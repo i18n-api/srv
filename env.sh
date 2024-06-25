@@ -9,12 +9,16 @@ fi
 
 set -o allexport
 
-if [ -z "$EXE_RG" ]; then
-  EXE_RG=$(type -P rg)
+if command -v rg &>/dev/null; then
+  if [ -z "$EXE_RG" ]; then
+    EXE_RG=$(type -P rg)
+  fi
 fi
 
-if [ -z "$EXE_FD" ]; then
-  EXE_FD=$(which fd)
+if command -v fd &>/dev/null; then
+  if [ -z "$EXE_FD" ]; then
+    EXE_FD=$(which fd)
+  fi
 fi
 
 cd $DIR/../conf

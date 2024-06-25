@@ -16,7 +16,9 @@ else
     apt-get install -y mysql-client
   fi
 fi
-mise exec -- $mysqldump \
+
+set +x
+cmd="mise exec -- $mysqldump \
   --skip-set-charset \
   --events \
   --skip-add-drop-table \
@@ -25,8 +27,11 @@ mise exec -- $mysqldump \
   --set-gtid-purged=OFF \
   --column-statistics=0 \
   --routines \
-  -u"$MYSQL_USER" \
-  -P$MYSQL_PORT -h$MYSQL_HOST -d "$MYSQL_DB" >/tmp/$MYSQL_DB.sql
+  -u$MYSQL_USER \
+  -P$MYSQL_PORT -d $MYSQL_DB"
+echo $cmd
+$cmd -h$MYSQL_HOST >/tmp/$MYSQL_DB.sql
+set -x
 # --column-statistics=0 \
 # --compatible=no_table_options
 

@@ -120,6 +120,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           curl https://mise.run | sudo MISE_INSTALL_PATH=/usr/bin/mise bash
+          mise settings set experimental true
           srv/init.sh
           srv/rust/sh/github.release.sh
 
