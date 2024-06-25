@@ -11,7 +11,7 @@ tracing = "0.1.40"
 xtld = "0.1.1"
 set_header = "0.1.9"
 apart = "0.1.9"
-re = "0.1.6"
+re = "0.1.7"
 t3 = "0.1.17"
 aok = "0.1.12"
 uid_by_token = { version = "0.1.0", path = "../uid_by_token" }

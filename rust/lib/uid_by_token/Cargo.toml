@@ -7,7 +7,20 @@ edition = "2021"
 
 [dependencies]
 aok = "0.1.12"
+genv = "0.1.10"
 intbin = "0.1.2"
 r = { version = "0.1.0", path = "../r" }
+sha2 = "0.10.8"
+static_init = "1.0.3"
 ub64 = { version = "0.0.10" }
 vb = "0.1.3"
+
+[dev-dependencies]
+tokio = { version = "1.38.0", features = [
+  "macros",
+  "rt",
+  "rt-multi-thread",
+  "time",
+  "fs",
+  "io-util",
+] }

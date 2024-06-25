@@ -17,7 +17,7 @@ exepid = { path = "../lib/exepid" }
 const-str = "0.5.7"
 url = { path = "./.url" }
 set_header = { version = "0.1.9" }
-re = "0.1.6"
+re = "0.1.7"
 t3 = "0.1.17"
 loginit = "0.1.13"
 genv = "0.1.10"
