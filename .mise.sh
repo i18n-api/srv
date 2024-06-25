@@ -4,11 +4,7 @@ DIR=$(dirname "${BASH_SOURCE[0]}")
 if echo ":$PATH:" | grep -q ":$DIR/.mise/bin:"; then
   exit 0
 fi
-
-# set -x
-
 set -o allexport
-
 if command -v rg &>/dev/null; then
   if [ -z "$EXE_RG" ]; then
     EXE_RG=$(type -P rg)
@@ -20,30 +16,10 @@ if command -v fd &>/dev/null; then
     EXE_FD=$(which fd)
   fi
 fi
+set +o allexport
 
 cd $DIR/../conf
-
-RUST_BACKTRACE=short
-
-RUST_LOG=debug,supervisor=warn,hyper=warn,rustls=warn,h2=warn,tower=warn,reqwest=warn,watchexec=warn,fred=info,globset=warn,process_wrap=warn,tungstenite=warn,grep_regex=warn,cargo_machete=warn
-
-_init() {
-  cd $1
-  shift
-  for i in $@; do
-    set -o allexport
-    . "$i".sh
-    set +o allexport
-  done
-  cd ..
-}
-
-_init srv port env
-_init env stripe db smtp r ipv6_proxy warn_mail
-
-unset -f _init
-
-set +o allexport
+. $DIR/.env.sh
 
 cd $DIR
 

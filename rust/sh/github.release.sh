@@ -6,8 +6,11 @@ set -e
 
 ROOT=$(dirname $DIR)
 cd $ROOT
-ENVSH="$(cat env.sh)\n$(cat ../env.sh)"
+ENVSH="$(cat ../.env.sh)"
+ENVSH=$(printf '%s\n' "$ENVSH" | sed ':a;N;$!ba;s/\n/\\n/g')
 
+echo -e $ENVSH
+exit 0
 rm -rf bin
 
 ./build.sh
@@ -21,7 +24,6 @@ cd os
 mkdir -p opt/bin
 find $ROOT/bin -type f | xargs -I {} mv {} opt/bin
 
-ENVSH=$(printf '%s\n' "$ENVSH" | sed ':a;N;$!ba;s/\n/\\n/g')
 sed -i "s|ENVSH|$ENVSH|g" opt/bin/api.sh
 
 case "$(uname -s)" in
