@@ -27,10 +27,9 @@ cmd="mise exec -- $mysqldump \
   --set-gtid-purged=OFF \
   --column-statistics=0 \
   --routines \
-  -u$MYSQL_USER \
-  -P$MYSQL_PORT -d $MYSQL_DB"
+  -d $MYSQL_DB"
 echo $cmd
-$cmd -h$MYSQL_HOST >/tmp/$MYSQL_DB.sql
+$cmd -h$MYSQL_HOST -P$MYSQL_PORT -u$MYSQL_USER >/tmp/$MYSQL_DB.sql
 set -x
 # --column-statistics=0 \
 # --compatible=no_table_options
