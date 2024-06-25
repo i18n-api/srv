@@ -17,6 +17,7 @@ else
   fi
 fi
 
+# 避免 github action 暴露 ip
 set +x
 cmd="mise exec -- $mysqldump \
   --skip-set-charset \
