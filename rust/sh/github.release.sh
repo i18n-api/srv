@@ -9,8 +9,6 @@ cd $ROOT
 ENVSH="$(cat ../.env.sh)"
 ENVSH=$(printf '%s\n' "$ENVSH" | sed ':a;N;$!ba;s/\n/\\n/g')
 
-echo -e $ENVSH
-exit 0
 rm -rf bin
 
 ./build.sh
