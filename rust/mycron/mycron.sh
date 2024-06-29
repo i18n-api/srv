@@ -11,7 +11,7 @@ SRV=$I18N/srv
 
 cd $I18N/conf
 set -o allexport
-. $SRV/env.sh
+. $SRV/.env.sh
 set +o allexport
 
 set -x
