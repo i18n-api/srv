@@ -5,7 +5,7 @@ use sha2::{Digest, Sha256};
 
 pub const BEGIN_TS: u64 = 1719800000;
 pub const TOKEN: &[u8] = b"token";
-pub const HASH_LEN: usize = 16;
+pub const HASH_LEN: usize = 10;
 
 #[static_init::dynamic]
 pub static TOKEN_SK: [u8; 33] = {
