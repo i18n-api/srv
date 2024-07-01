@@ -9,7 +9,9 @@ e() {
 }
 
 e ../ops/backup/db/load.coffee
-e ../ops/backup/db/dump.sh
+if [ "$GITHUB_ACTIONS" != "true" ]; then
+  e ../ops/backup/db/dump.sh
+fi
 
 APT_URL=api/.url
 
