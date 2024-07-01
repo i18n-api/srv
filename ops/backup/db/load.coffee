@@ -106,8 +106,12 @@ scan = (dir)=>
     importSql init_sql
   return
 
-await scan join ROOT,'db'
+ing = [
+  scan join ROOT,'db'
+]
 for i from load join ROOT, 'mod.nt'
-  await scan join ROOT,'mod',i,'db'
+  ing.push scan join ROOT,'mod',i,'db'
+
+await Promise.all ing
 
 process.exit()

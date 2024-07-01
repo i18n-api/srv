@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 aok = "0.1.12"
-genv = "0.1.10"
+base64 = "0.22.1"
 intbin = "0.1.2"
 r = { version = "0.1.0", path = "../r" }
 sha2 = "0.10.8"

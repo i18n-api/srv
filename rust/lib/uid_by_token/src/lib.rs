@@ -1,18 +1,27 @@
+use base64::prelude::{Engine as _, BASE64_STANDARD_NO_PAD};
 use intbin::{bin_u64, u64_bin};
 use r::{fred::interfaces::HashesInterface, R};
 use sha2::{Digest, Sha256};
 
-genv::s!(TOKEN_SK);
+pub const BEGIN_TS: u64 = 1719800000;
+pub const TOKEN: &[u8] = b"token";
+pub const HASH_LEN: usize = 16;
+
+#[static_init::dynamic]
+pub static TOKEN_SK: [u8; 33] = {
+  let token_sk_env = std::env::var("TOKEN_SK").expect("NO ENV TOKEN_SK");
+  BASE64_STANDARD_NO_PAD
+    .decode(token_sk_env)
+    .expect("TOKEN_SK NOT BASE64")
+    .try_into()
+    .expect("TOKEN_SK AFTER BASE64 DECODE MUST BE 33 bytes")
+};
 
 #[derive(Copy, Clone, Debug)]
 pub struct Token {
   pub id: u64,
   pub uid: u64,
 }
-
-pub const BEGIN_TS: u64 = 1719800000;
-pub const TOKEN: &[u8] = b"token";
-pub const HASH_LEN: usize = 10;
 
 pub async fn uid_by_token(token: impl AsRef<str>) -> aok::Result<Option<Token>> {
   let token = token.as_ref();
@@ -22,7 +31,7 @@ pub async fn uid_by_token(token: impl AsRef<str>) -> aok::Result<Option<Token>> 
         let bin = &token[HASH_LEN..];
         let mut hasher = Sha256::new();
         hasher.update(bin);
-        hasher.update(TOKEN_SK.as_bytes());
+        hasher.update(&TOKEN_SK[..]);
         let hash = &hasher.finalize()[..HASH_LEN];
         if &token[0..HASH_LEN] == hash {
           if let Ok(id_li) = vb::d(bin) {
