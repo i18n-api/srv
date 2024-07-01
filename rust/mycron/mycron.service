@@ -1,6 +1,6 @@
 [Unit]
 Description=mycron
-After=network.target kvrocks.service mariadb.service
+After=network.target 
 
 [Service]
 Type=simple

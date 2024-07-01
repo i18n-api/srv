@@ -10,6 +10,7 @@ pub struct Token {
   pub uid: u64,
 }
 
+pub const BEGIN_TS: u64 = 1719800000;
 pub const TOKEN: &[u8] = b"token";
 pub const HASH_LEN: usize = 10;
 

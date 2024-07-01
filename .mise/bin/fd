@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-exec $EXE_FD -pH --no-ignore-vcs $@
+exec $EXEFD -pH --no-ignore-vcs $@

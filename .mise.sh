@@ -4,20 +4,6 @@ DIR=$(dirname "${BASH_SOURCE[0]}")
 if echo ":$PATH:" | grep -q ":$DIR/.mise/bin:"; then
   exit 0
 fi
-set -o allexport
-if command -v rg &>/dev/null; then
-  if [ -z "$EXE_RG" ]; then
-    EXE_RG=$(type -P rg)
-  fi
-fi
-
-if command -v fd &>/dev/null; then
-  if [ -z "$EXE_FD" ]; then
-    EXE_FD=$(which fd)
-  fi
-fi
-set +o allexport
-
 cd $DIR/../conf
 . $DIR/.env.sh
 
@@ -34,4 +20,18 @@ if ! [ -f "$rust_api_url_cargo" ]; then
   mkdir -p $src
   touch $src/lib.rs
   echo -e '[package]\nname = "url"' >$rust_api_url_cargo
+fi
+
+export A=1
+
+if command -v rg &>/dev/null; then
+  if [ -z "$EXERG" ]; then
+    export EXERG=$(type -P rg)
+  fi
+fi
+
+if command -v fd &>/dev/null; then
+  if [ -z "$EXEFD" ]; then
+    export EXEFD=$(which fd)
+  fi
 fi
