@@ -1,6 +1,6 @@
 [package]
 name = "api"
-version = "0.1.93"
+version = "0.1.94"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -17,8 +17,8 @@ exepid = { path = "../lib/exepid" }
 const-str = "0.5.7"
 url = { path = "./.url" }
 set_header = { version = "0.1.9" }
-re = "0.1.7"
-t3 = "0.1.17"
+re = "0.1.8"
+t3 = "0.1.19"
 loginit = "0.1.13"
 genv = "0.1.10"
 ping_ver = "0.1.4"
