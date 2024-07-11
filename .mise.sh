@@ -6,7 +6,6 @@ if echo ":$PATH:" | grep -q ":$DIR/.mise/bin:"; then
 fi
 cd $DIR/../conf
 . $DIR/.env.sh
-
 cd $DIR
 
 . rust/sh/flag.sh
@@ -21,8 +20,6 @@ if ! [ -f "$rust_api_url_cargo" ]; then
   touch $src/lib.rs
   echo -e '[package]\nname = "url"' >$rust_api_url_cargo
 fi
-
-export A=1
 
 if command -v rg &>/dev/null; then
   if [ -z "$EXERG" ]; then

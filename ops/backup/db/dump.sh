@@ -7,13 +7,16 @@ set -xe
 
 mise trust
 
-mysqldump=mysqldump
+mysqldump=mariadb-dump
 
-if [ -f "/usr/bin/mysqldump" ]; then # 不用 OceanBase 自带的 mysqldump , 用 mysql 8 的 mysqldump
-  mysqldump=/usr/bin/mysqldump
-else
+if ! command -v $mysqldump &>/dev/null; then
   if command -v apt-get &>/dev/null; then
-    apt-get install -y mysql-client
+    apt-get install -y mariadb-client
+  else
+    if command -v brew &>/dev/null; then
+      brew install mariadb
+      brew services stop mariadb || true
+    fi
   fi
 fi
 
@@ -25,8 +28,6 @@ cmd="mise exec -- $mysqldump \
   --skip-add-drop-table \
   --skip-events \
   --compress \
-  --set-gtid-purged=OFF \
-  --column-statistics=0 \
   --routines \
   -d $MYSQL_DB"
 echo $cmd
