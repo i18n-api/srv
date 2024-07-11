@@ -5,6 +5,5 @@
   li = readdirSync(dir).filter(
     (i)=>not i.startsWith('.')
   )
-
-  i18nRust(dir, li)
+  await i18nRust(dir, li)
   return

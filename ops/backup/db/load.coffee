@@ -26,7 +26,7 @@ ROOT = resolve(
 } = process.env
 
 importSql = (sql)=>
-    $"mysql -h #{MYSQL_HOST} -P#{MYSQL_PORT} -u #{MYSQL_USER} #{MYSQL_DB} < #{sql}"
+    $"mariadb -h #{MYSQL_HOST} -P#{MYSQL_PORT} -u #{MYSQL_USER} #{MYSQL_DB} < #{sql}"
 
 scan = (dir)=>
   if not existsSync dir
