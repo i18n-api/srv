@@ -9,6 +9,7 @@
   @3-/read
   @3-/walk
   @3-/nt/load.js
+  which
 
 {greenBright, gray} = chalk
 
@@ -26,7 +27,9 @@ ROOT = resolve(
 } = process.env
 
 importSql = (sql)=>
-    $"mariadb -h #{MYSQL_HOST} -P#{MYSQL_PORT} -u #{MYSQL_USER} #{MYSQL_DB} < #{sql}"
+  mariadb = 'mariadb'
+  mariadb = if await which(mariadb, { nothrow: true }) then mariadb else 'mysql'
+  $"#{mariadb} -h #{MYSQL_HOST} -P#{MYSQL_PORT} -u #{MYSQL_USER} #{MYSQL_DB} < #{sql}"
 
 scan = (dir)=>
   if not existsSync dir
