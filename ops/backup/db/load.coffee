@@ -26,9 +26,10 @@ ROOT = resolve(
   MYSQL_USER
 } = process.env
 
+mariadb = 'mariadb'
+mariadb = if await which(mariadb, { nothrow: true }) then mariadb else 'mysql'
+
 importSql = (sql)=>
-  mariadb = 'mariadb'
-  mariadb = if await which(mariadb, { nothrow: true }) then mariadb else 'mysql'
   $"#{mariadb} -h #{MYSQL_HOST} -P#{MYSQL_PORT} -u #{MYSQL_USER} #{MYSQL_DB} < #{sql}"
 
 scan = (dir)=>
