@@ -41,4 +41,4 @@ debug-assertions = false
 # [profile.dev.package."*"]
 # opt-level = 3
 [profile.dev]
-# split-debuginfo = "unpacked"
+split-debuginfo = "unpacked"
