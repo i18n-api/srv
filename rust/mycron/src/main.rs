@@ -48,11 +48,7 @@ pub async fn run(root: String, cron_id: u32, dir: String, sh: String, timeout: u
 
   match r {
     Ok(out) => {
-      let code = if let Some(code) = out.status.code() {
-        code
-      } else {
-        -1
-      };
+      let code = out.status.code().unwrap_or(-1);
       if code == 0 {
         let now = sts::min();
         let begin = now - elapsed.as_secs() / 60;

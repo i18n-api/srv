@@ -1,7 +1,5 @@
 [workspace]
 members = [
-  "api/.url",
-  "api",
   "lib/arg",
   "lib/xerr",
   "lib/tp",
@@ -12,6 +10,7 @@ members = [
   "lib/mark",
   "lib/i18n",
   "lib/gid",
+  "lib/uid_by_token",
   "lib/user",
   "lib/util",
   "lib/r",
@@ -22,7 +21,8 @@ members = [
   "lib/ip",
   "lib/ua",
   "mycron",
-  "lib/uid_by_token",
+  "api/.url",
+  "api",
 ]
 resolver = "2"
 
