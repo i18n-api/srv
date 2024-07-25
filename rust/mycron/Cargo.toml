@@ -3,7 +3,7 @@ name = "mycron"
 version = "0.1.0"
 edition = "2021"
 description = "cron from mysql"
-license = "Apache-2.0"
+license = "MulanPSL-2.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
@@ -11,7 +11,7 @@ anyhow = "1.0.86"
 duct = "0.13.7"
 xerr = { version = "0.1.1", path = "../lib/xerr" }
 m = { path = "../lib/m" }
-tokio = { version = "1.38.1", features = [
+tokio = { version = "1.39.1", features = [
   "macros",
   "rt",
   "rt-multi-thread",
