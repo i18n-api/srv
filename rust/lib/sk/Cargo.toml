@@ -1,0 +1,15 @@
+[package]
+name = "sk"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+trt = "0.1.29"
+util = { path = "../util" }
+r = { path = "../r" }
+static_init = { version = "1.0.3", features = [
+  "lock_statistics",
+  "parking_lot",
+  "parking_lot_core"
+] }
