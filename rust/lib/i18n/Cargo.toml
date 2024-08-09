@@ -1,0 +1,27 @@
+[package]
+name = "i18n"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+aok = "0.1.12"
+const-str = "0.5.7"
+http = "1.1.0"
+intbin = "0.1.2"
+lang = "0.1.29"
+
+[dev-dependencies]
+loginit = "0.1.13"
+static_init = "1.0.3"
+tokio = { version = "1.39.2", features = [
+  "macros",
+  "rt",
+  "rt-multi-thread",
+  "time",
+  "fs",
+  "io-util",
+] }
+tracing = "0.1.40"
+r = { path = "../r" }
+re = "0.1.8"
