@@ -1,0 +1,20 @@
+name: api
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - rust/api/Cargo.toml
+  workflow_dispatch:
+
+jobs:
+  build:
+    permissions:
+      actions: write
+      repository-projects: write
+      contents: write
+    uses: ./.github/workflows/build.yml
+    with:
+      name: api
+    secrets: inherit
