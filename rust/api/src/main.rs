@@ -6,6 +6,7 @@
 #![feature(let_chains)]
 #![allow(non_snake_case)]
 
+use axum::extract::DefaultBodyLimit;
 /**
 蚂蚁集团 ｜ 如何在生产环境排查 Rust 内存占用过高问题
 https://rustmagazine.github.io/rust_magazine_2021/chapter_5/rust-memory-troubleshootting.html
@@ -80,6 +81,12 @@ async fn main() -> anyhow::Result<()> {
 
   route!();
 
-  t3::srv(router.layer(middleware::from_fn(set_header)), PORT()).await;
+  t3::srv(
+    router
+      .layer(middleware::from_fn(set_header))
+      .layer(DefaultBodyLimit::max(100 * 1024 * 1024)),
+    PORT(),
+  )
+  .await;
   Ok(())
 }
