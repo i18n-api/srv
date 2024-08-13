@@ -1,0 +1,42 @@
+[workspace]
+members = [
+  "lib/arg",
+  "lib/tp",
+  "lib/client",
+  "lib/exepid",
+  "lib/sk",
+  "lib/mark",
+  "lib/i18n",
+  "lib/gid",
+  "lib/uid_by_token",
+  "lib/user",
+  "lib/util",
+  "lib/r",
+  "lib/passwd",
+  "lib/kfn",
+  "lib/g",
+  "lib/m",
+  "lib/ip",
+  "lib/ua",
+  "mycron",
+  "api/.url",
+  "api",
+]
+resolver = "2"
+
+[profile.release]
+lto = true
+opt-level = 3
+incremental = true
+codegen-units = 1
+overflow-checks = false
+# panic = 'abort'
+strip = false
+debug-assertions = false
+
+# [profile.dev]
+# opt-level = 1
+# [profile.dev.package."*"]
+# opt-level = 3
+[profile.dev]
+split-debuginfo = "unpacked"

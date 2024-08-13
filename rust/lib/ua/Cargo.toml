@@ -1,0 +1,11 @@
+[package]
+name = "ua"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+base64 = "0.22.1"
+http = "1.1.0"
+vb = "0.1.5"
+woothee = "0.13.0"

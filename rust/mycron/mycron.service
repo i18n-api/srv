@@ -1,0 +1,14 @@
+[Unit]
+Description=mycron
+After=network.target 
+
+[Service]
+Type=simple
+Restart=always
+CPUSchedulingPolicy=rr
+CPUSchedulingPriority=70
+RestartSec=1
+ExecStart=/opt/bin/mycron.sh
+
+[Install]
+WantedBy=multi-user.target
