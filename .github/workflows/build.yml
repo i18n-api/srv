@@ -45,7 +45,7 @@ jobs:
       - name: init rust
         shell: bash
         run: |
-          bun -e "console.log('RUST_VER='+new Date(new Date()-864e5*7).toISOString().slice(0,8)+'01')" >> $GITHUB_ENV
+          bun -e "console.log('RUST_VER='+new Date(new Date()-864e5*12).toISOString().slice(0,8)+'10')" >> $GITHUB_ENV
           mkdir -p ~/cache/rust/target ~/.cargo
           echo -e "[build]\ntarget-dir = \"$HOME/cache/rust/target\"" >~/.cargo/config.toml
 
