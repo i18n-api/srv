@@ -70,7 +70,6 @@ pub async fn client(parts: &mut Parts) -> aok::Result<Client> {
 
       let Extension(map) = parts.extract::<Extension<Header>>().await?;
       for i in cookie_li.into_iter() {
-        let Ok(i) = i.parse();
         map.push(SET_COOKIE, i);
       }
     }
