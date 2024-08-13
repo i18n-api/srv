@@ -77,8 +77,13 @@ scan = (dir)=>
               "DROP #{kind} IF EXISTS #{name};"
             )
         else
-          sql = sql.slice(0,len)+'IF NOT EXISTS '+sql.slice(len)
-          li = sql.split(';\n').filter((i)=>i.length).map((i)=>i+';')
+          li = sql.split(';\n').filter((i)=>i.length).map(
+            (i)=>
+              CREATE_TABLE ='CREATE TABLE '
+              if i.startsWith(CREATE_TABLE)
+                i = CREATE_TABLE+" IF NOT EXISTS " + i.slice(13)
+              i+';'
+          )
         await $db(
           (c)=>
             # hack for https://github.com/oceanbase/oceanbase/issues/1818
@@ -98,6 +103,10 @@ scan = (dir)=>
               return
 
             await c.beginTransaction()
+            if kind == 'table'
+              c.query(
+                'SET SESSION default_storage_engine=\'RocksDB\''
+              )
             for i from li
               await c.query(i)
             await c.commit()
