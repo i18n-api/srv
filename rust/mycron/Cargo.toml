@@ -9,7 +9,6 @@ license = "MulanPSL-2.0"
 [dependencies]
 anyhow = "1.0.86"
 duct = "0.13.7"
-xerr = { version = "0.1.1", path = "../lib/xerr" }
 m = { path = "../lib/m" }
 tokio = { version = "1.39.2", features = [
   "macros",
@@ -25,6 +24,7 @@ xsmtp = "0.1.11"
 static_init = "1.0.3"
 tracing = "0.1.40"
 loginit = "0.1.13"
+xerr = "0.1.14"
 # dirs = "5.0.1"
 
 # [target.x86_64-unknown-linux-gnu]

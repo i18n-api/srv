@@ -1,12 +1,10 @@
 [workspace]
 members = [
   "lib/arg",
-  "lib/xerr",
   "lib/tp",
   "lib/client",
   "lib/exepid",
   "lib/sk",
-  "lib/xerr",
   "lib/mark",
   "lib/i18n",
   "lib/gid",
