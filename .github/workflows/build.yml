@@ -39,7 +39,7 @@ jobs:
 
       - name: Install mariadb
         run: |
-          apt-get install -y mariadb-client
+          sudo apt-get install -y mariadb-client
 
       - name: Install Protoc
         if: runner.os != 'macOS'
