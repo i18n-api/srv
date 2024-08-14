@@ -101,7 +101,6 @@ impl ClientUser {
     let ip = ip::bin_by_header_addr(header, addr);
     let client_id = self.id;
     let uid_u64 = bin_u64(uid);
-    // TODO : remove when merge https://github.com/blackbeam/rust_mysql_common/pull/112
     let ip: Vec<_> = ip.into();
 
     trt::bg(async move {
