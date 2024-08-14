@@ -1,0 +1,7 @@
+.DS_Store
+*.out
+bun.lockb
+node_modules/
+/mod/
+Cargo.lock
+/tmp/env
