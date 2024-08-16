@@ -9,7 +9,7 @@ aok = "0.1.12"
 const-str = "0.5.7"
 http = "1.1.0"
 intbin = "0.1.2"
-lang = "0.1.29"
+lang = "0.1.30"
 
 [dev-dependencies]
 loginit = "0.1.13"
