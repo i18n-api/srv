@@ -5,10 +5,14 @@ cd $DIR
 set -ex
 export CARGO_REGISTRIES_CRATES_IO_PROTOCOL=git
 
-upgrade() {
-  cd $1
+up() {
   cargo update
   cargo upgrade -i --recursive --verbose
+}
+
+upgrade() {
+  cd $1
+  up || up || up
 }
 
 MOD=$(realpath $DIR/../..)/mod

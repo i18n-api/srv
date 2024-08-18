@@ -7,5 +7,5 @@ edition = "2021"
 [dependencies]
 base64 = "0.22.1"
 http = "1.1.0"
-vb = "0.1.5"
+vb = "0.1.8"
 woothee = "0.13.0"

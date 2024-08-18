@@ -12,9 +12,9 @@ gid = { path = "../gid" }
 m = { path = "../m" }
 sk = { path = "../sk" }
 anyhow = "1.0.86"
-vb = "0.1.5"
+vb = "0.1.8"
 intbin = "0.1.2"
-cookiestr = "0.1.2"
+cookiestr = "0.1.3"
 kfn = { version = "0.1.0", path = "../kfn" }
 const-str = "0.5.7"
 ip = { path = "../ip", features = ["http"] }
@@ -25,7 +25,7 @@ trt = "0.1.29"
 xhash = "0.1.29"
 static_init = "1.0.3"
 gxhash = { version = "3.4.1" }
-xbin = "0.1.4"
+xbin = "0.1.6"
 fred = "9.0.3"
 [package.metadata.cargo-machete]
 ignored = ["static_init"]
