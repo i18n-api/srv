@@ -17,7 +17,7 @@ vb = "0.1.8"
 xbin = "0.1.6"
 
 [dev-dependencies]
-tokio = { version = "1.39.3", features = [
+tokio = { version = "1.40.0", features = [
   "macros",
   "rt",
   "rt-multi-thread",

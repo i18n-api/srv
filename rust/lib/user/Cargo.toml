@@ -19,13 +19,13 @@ kfn = { version = "0.1.0", path = "../kfn" }
 const-str = "0.5.7"
 ip = { path = "../ip", features = ["http"] }
 ua = { path = "../ua" }
-sonic-rs = "0.3.10"
+sonic-rs = "0.3.12"
 sts = "0.1.23"
 trt = "0.1.29"
 xhash = "0.1.29"
 static_init = "1.0.3"
 gxhash = { version = "3.4.1" }
 xbin = "0.1.6"
-fred = "9.1.0"
+fred = "9.2.1"
 [package.metadata.cargo-machete]
 ignored = ["static_init"]

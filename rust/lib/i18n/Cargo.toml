@@ -9,12 +9,12 @@ aok = "0.1.15"
 const-str = "0.5.7"
 http = "1.1.0"
 intbin = "0.1.2"
-lang = "0.1.31"
+lang = "0.1.32"
 
 [dev-dependencies]
 loginit = "0.1.13"
 static_init = "1.0.3"
-tokio = { version = "1.39.3", features = [
+tokio = { version = "1.40.0", features = [
   "macros",
   "rt",
   "rt-multi-thread",
