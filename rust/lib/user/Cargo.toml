@@ -11,7 +11,7 @@ r = { path = "../r" }
 gid = { path = "../gid" }
 m = { path = "../m" }
 sk = { path = "../sk" }
-anyhow = "1.0.86"
+anyhow = "1.0.87"
 vb = "0.1.8"
 intbin = "0.1.2"
 cookiestr = "0.1.3"
