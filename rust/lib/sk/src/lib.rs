@@ -2,7 +2,8 @@ use r::{fred::interfaces::HashesInterface, R};
 use trt::TRT;
 use util::random_bytes;
 
-pub static mut SK: [u8; 32] = [0; 32];
+pub const SK_LEN: usize = 32;
+pub static mut SK: [u8; SK_LEN] = [0; SK_LEN];
 
 pub fn sk() -> &'static [u8] {
   unsafe { &SK[..] }
@@ -15,14 +16,13 @@ extern "C" fn init() {
     let conf = &b"conf"[..];
     let key = &b"SK"[..];
     let sk: Option<Vec<u8>> = redis.hget(conf, key).await.unwrap();
-    let len = unsafe { SK.len() };
     if let Some(sk) = sk {
-      if sk.len() == len {
+      if sk.len() == SK_LEN {
         unsafe { SK = sk.try_into().unwrap() };
         return;
       }
     }
-    let sk = &random_bytes(len)[..];
+    let sk = &random_bytes(SK_LEN)[..];
     redis.hset::<(), _, _>(conf, vec![(key, sk)]).await.unwrap();
     unsafe { SK = sk.try_into().unwrap() };
   })

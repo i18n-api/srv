@@ -11,7 +11,7 @@ r = { path = "../r" }
 gid = { path = "../gid" }
 m = { path = "../m" }
 sk = { path = "../sk" }
-anyhow = "1.0.87"
+anyhow = "1.0.89"
 vb = "0.1.8"
 intbin = "0.1.2"
 cookiestr = "0.1.3"
@@ -19,7 +19,7 @@ kfn = { version = "0.1.0", path = "../kfn" }
 const-str = "0.5.7"
 ip = { path = "../ip", features = ["http"] }
 ua = { path = "../ua" }
-sonic-rs = "0.3.12"
+sonic-rs = "0.3.13"
 sts = "0.1.23"
 trt = "0.1.29"
 xhash = "0.1.29"

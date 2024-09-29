@@ -1,12 +1,12 @@
 [package]
 name = "api"
-version = "0.1.147"
+version = "0.1.148"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
-anyhow = "1.0.87"
-axum = "0.7.5"
+anyhow = "1.0.89"
+axum = "0.7.7"
 tokio = { version = "1.40.0", features = [
   "time",
   "rt-multi-thread",
