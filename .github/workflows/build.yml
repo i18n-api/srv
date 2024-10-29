@@ -33,7 +33,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: latest
+          node-version: latest/-1
 
       - uses: oven-sh/setup-bun@v1
 
