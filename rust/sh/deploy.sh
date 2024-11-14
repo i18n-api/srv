@@ -23,4 +23,6 @@ fi
 
 . $DIST/srv_li.sh
 
-pdsh -w "$SRV_LI" -l root -R ssh /opt/ops/srv/setup.sh
+ver=$(cat ../api/Cargo.toml | grep "^version" | awk -F'"' '{print $2}')
+
+pdsh -w "$SRV_LI" -l root -R ssh "/opt/ops/srv/setup.sh $ver"

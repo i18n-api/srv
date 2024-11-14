@@ -152,4 +152,4 @@ jobs:
       - name: 部署到线上服务器
         shell: bash
         run: |
-          sudo -u root ./srv/rust/sh/deploy.sh $(pwd)/dist
+          sudo -u root ./srv/rust/sh/deploy.sh
