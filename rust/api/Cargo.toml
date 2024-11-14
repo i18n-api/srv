@@ -1,0 +1,25 @@
+[package]
+name = "api"
+version = "0.1.194"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+anyhow = "1.0.93"
+axum = "0.7.7"
+tokio = { version = "1.41.0", features = [
+  "time",
+  "rt-multi-thread",
+  "macros",
+  "rt",
+] }
+exepid = { path = "../lib/exepid" }
+const-str = "0.5.7"
+url = { path = "./.url" }
+set_header = { version = "0.1.10" }
+re = "0.1.9"
+t3 = "0.1.20"
+loginit = "0.1.13"
+genv = "0.1.15"
+ping_ver = "0.1.5"
+jemallocator = "0.5.4"
