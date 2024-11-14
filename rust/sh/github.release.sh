@@ -56,7 +56,7 @@ ZSTD_CLEVEL=19 tar --owner=root --group=root -I zstd -cvpf ../$TZT .
 cd ..
 set +x
 . $ROOT/../../dist/GITHUB_TAR.sh
-$DIR/encrypt.sh $TZT_PASSWORD $TZT >$TZT.gpg
+$DIR/encrypt.sh $TZT_PASSWORD $TZT
 set -x
 
 cd $ROOT
