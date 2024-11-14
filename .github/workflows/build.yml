@@ -126,7 +126,7 @@ jobs:
         run: |
           curl https://mise.run | sudo MISE_INSTALL_PATH=/usr/bin/mise bash
           mise settings set experimental true
-          GIT_SSH_COMMAND="ssh -i dist/ssh/id_ed25519" git clone --depth=1 ssh://git@ssh.github.com:443/i18n-ops/conf.git /etc/ops
+          sudo GIT_SSH_COMMAND="ssh -i dist/ssh/id_ed25519" git clone --depth=1 ssh://git@ssh.github.com:443/i18n-ops/conf.git /etc/ops
           srv/init.sh
           srv/rust/sh/github.release.sh
 
