@@ -1,5 +1,5 @@
 [package]
-name = "api"
+name = "srv"
 version = "0.1.201"
 edition = "2021"
 

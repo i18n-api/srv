@@ -19,8 +19,8 @@ members = [
   "lib/ip",
   "lib/ua",
   "mycron",
-  "api/.url",
-  "api",
+  "srv/.url",
+  "srv",
 ]
 resolver = "2"
 
