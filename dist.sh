@@ -13,7 +13,7 @@ if ! [ -z "$1" ]; then
   gme $@
 fi
 
-cd rust/api
+cd rust/srv
 touch Cargo.lock
 cargo v patch -y
 if [ "$branch" != "main" ]; then
