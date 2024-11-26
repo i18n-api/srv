@@ -58,7 +58,7 @@ cd ..
 $DIR/encrypt.sh $ROOT/../../dist/gpgPassowrd $TZT
 
 cd $ROOT
-META=$(cargo metadata --format-version=1 --no-deps | jq '.packages[] | .name + " " + .version' -r | grep "^api ")
+META=$(cargo metadata --format-version=1 --no-deps | jq '.packages[] | .name + " " + .version' -r | grep "^srv ")
 NAME=$(echo $META | cut -d ' ' -f1)
 VER=$(echo $META | cut -d ' ' -f2)
 

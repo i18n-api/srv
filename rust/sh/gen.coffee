@@ -99,7 +99,7 @@ if POST_PATH_LI.length
   route_li.push "req!(post FnAny #{POST_PATH_LI.join(';')});"
 
 write(
-  join ROOT, 'api/src/route.rs'
+  join ROOT, 'srv/src/route.rs'
   """
 /// gen by init.coffee , don't edit
 #[macro_export]
@@ -110,7 +110,7 @@ macro_rules! route {
 }\n"""
 )
 
-dot_url = join ROOT, 'api/.url'
+dot_url = join ROOT, 'srv/.url'
 
 write(
   join dot_url, 'src/lib.rs'

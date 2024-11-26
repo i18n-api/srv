@@ -16,7 +16,7 @@ e ./dump.sh
 
 cd $DIR
 
-APT_URL=api/.url
+APT_URL=srv/.url
 
 ensure() {
   for pkg in "$@"; do
