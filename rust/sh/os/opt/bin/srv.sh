@@ -10,4 +10,4 @@ set -o allexport
 ENVSH
 set +o allexport
 
-exec /opt/bin/api $@
+exec /opt/bin/srv $@

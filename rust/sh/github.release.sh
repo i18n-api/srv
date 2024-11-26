@@ -22,7 +22,7 @@ cd os
 mkdir -p opt/bin
 find $ROOT/bin -type f | xargs -I {} mv {} opt/bin
 
-sed -i "s|ENVSH|$ENVSH|g" opt/bin/api.sh
+sed -i "s|ENVSH|$ENVSH|g" opt/bin/srv.sh
 
 case "$(uname -s)" in
 "Darwin")
