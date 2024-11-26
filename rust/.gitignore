@@ -4,6 +4,6 @@ rustc-ice-*.txt
 /url.nt
 /url/.gitignore
 target/
-/api/.url/
+/srv/.url/
 /lib/fred.rs
 /bin/
