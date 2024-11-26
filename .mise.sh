@@ -13,12 +13,12 @@ if ! [ -d node_modules ]; then
   bun i
 fi
 
-rust_api_url_cargo=rust/api/.url/Cargo.toml
-if ! [ -f "$rust_api_url_cargo" ]; then
-  src=$(dirname $rust_api_url_cargo)/src
+rust_srv_url_cargo=rust/srv/.url/Cargo.toml
+if ! [ -f "$rust_srv_url_cargo" ]; then
+  src=$(dirname $rust_srv_url_cargo)/src
   mkdir -p $src
   touch $src/lib.rs
-  echo -e '[package]\nname = "url"' >$rust_api_url_cargo
+  echo -e '[package]\nname = "url"' >$rust_srv_url_cargo
 fi
 
 if command -v rg &>/dev/null; then
