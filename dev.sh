@@ -28,4 +28,4 @@ exec mise exec -- watchexec \
   $watchdir \
   --exts rs,toml,proto \
   -r \
-  -- ./run.sh api
+  -- ./run.sh srv
