@@ -2,4 +2,4 @@
 
 set -ex
 
-exec journalctl -xfeu api
+exec journalctl -xfeu srv

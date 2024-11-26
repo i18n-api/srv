@@ -8,7 +8,7 @@ Restart=always
 CPUSchedulingPolicy=rr
 CPUSchedulingPriority=70
 RestartSec=1
-ExecStart=/opt/bin/api.sh
+ExecStart=/opt/bin/srv.sh
 
 [Install]
 WantedBy=multi-user.target
