@@ -36,4 +36,4 @@ export VER=$(echo $META | cut -d ' ' -f2)
 
 LOG=../log/$VER.md
 
-../../dist/encrypt.sh $TMP
+../../dist/encrypt.sh $TMP $ROOT
