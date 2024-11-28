@@ -152,4 +152,5 @@ jobs:
       - name: 部署到线上服务器
         shell: bash
         run: |
-          sudo -u root ./srv/rust/sh/deploy.sh
+          ver=$(cat ./srv/rust/srv/Cargo.toml | grep "^version" | awk -F'"' '{print $2}')
+          bash <(curl -sSL https://raw.githubusercontent.com/i18n-ops/ops/refs/heads/main/srv/deploy.sh) srv $ver
